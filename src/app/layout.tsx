@@ -21,7 +21,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <AntdRegistry>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
           </AntdRegistry>
         </body>
