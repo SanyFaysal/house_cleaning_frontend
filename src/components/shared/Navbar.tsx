@@ -12,7 +12,7 @@ const items: MenuProps["items"] = [
 ]
 export default function Navbar() {
     return (
-        <Header style={{ display: 'flex', alignItems: 'center', backgroundColor: "transparent" }}>
+        <Header className="" style={{ display: 'flex', alignItems: 'center', backgroundColor: "transparent" }}>
             <div className="demo-logo">
             </div>
             <Menu

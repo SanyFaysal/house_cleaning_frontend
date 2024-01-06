@@ -1,33 +1,22 @@
-import { Card } from "antd";
+import PageLayout from "@/components/layout/PageLayout";
+import Footer from "@/components/shared/Footer";
+import { Card, Layout } from "antd";
 
 
 export default function Home() {
   return (
-    <>
-      <Card
-        style={{ marginTop: 16 }}
-        type="inner"
-        title="Inner Card title"
-        extra={<a href="#">More</a>}
-      >
-        Inner Card content
-      </Card>
-      <Card
-        style={{ marginTop: 16 }}
-        type="inner"
-        title="Inner Card title"
-        extra={<a href="#">More</a>}
-      >
-        Inner Card content
-      </Card>
-      <Card
-        style={{ marginTop: 16 }}
-        type="inner"
-        title="Inner Card title"
-        extra={<a href="#">More</a>}
-      >
-        Inner Card content
-      </Card>
-    </>
+    <PageLayout>
+      <>
+        <Card
+          style={{ marginTop: 16 }}
+          type="inner"
+          title="Inner Card title"
+          extra={<a href="#">More</a>}
+        >
+          Inner Card content
+        </Card>
+
+      </>
+    </PageLayout>
   )
 }

@@ -3,7 +3,6 @@ import Providers from '@/lib/Providers'
 import './globals.css'
 
 import Navbar from '@/components/shared/Navbar'
-import { AntdRegistry } from '@ant-design/nextjs-registry'
 
 
 // export const metadata: Metadata = {
@@ -19,12 +18,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body>
-          <AntdRegistry>
-            {/* <Navbar /> */}
-            {children}
-          </AntdRegistry>
-        </body>
+        <body>{children}</body>
       </html>
     </Providers>
 
