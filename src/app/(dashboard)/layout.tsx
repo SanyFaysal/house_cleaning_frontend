@@ -1,32 +1,54 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BellOutlined, ProfileOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import Link from 'next/link';
+import { getFromLocalStorage, isLoggedIn } from '@/utils/local-storage';
+import { useRouter } from 'next/navigation';
+import { dashboardSideItems } from '@/constants/dashboardSideItems';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import { authKey } from '@/constants/storageKey';
+import { fetchUser } from '@/redux/slices/userSlice';
 
 
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-    (icon, index) => ({
-        key: String(index + 1),
-        icon: React.createElement(icon),
-        label: `nav ${index + 1}`,
-    }),
-);
-
 const DashboardLayout = ({ children }: { children: React.ReactNode | React.ReactElement }) => {
+    const dispatch = useAppDispatch() as any;
+    const { user } = useAppSelector(state => state.auth)
+
+    const router = useRouter();
+    const loggedIn = isLoggedIn();
+    const token = getFromLocalStorage(authKey) as string
+
+    const items = dashboardSideItems(user?.role)
+
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
 
+    useEffect(() => {
+        if (!loggedIn) { router.push('/signin') }
+    }, [router])
+
+
+
+    useEffect(() => {
+        dispatch(fetchUser(token))
+    }, [token])
+
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <div className="demo-logo-vertical" />
+                <div className="demo-logo-vertical mt-10" >
+
+                    <Link href={'/'}>Back to home</Link>
+                </div>
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
             </Sider>
             <Layout>

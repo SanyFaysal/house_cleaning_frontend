@@ -19,11 +19,12 @@ export const getFromLocalStorage = (key: string) => {
 
 export const isLoggedIn = () => {
   const authToken = getFromLocalStorage(authKey)
-
   if (authToken) {
-    const decodedData = decodedToken(authToken);
+    const decodedData = decodedToken(authToken) as any;
     if (decodedData?.id) return true
     else return false;
+  } else {
+    return false
   }
 }
 export const removeFromLocalStorage = (key: string) => {
