@@ -17,7 +17,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const DashboardLayout = ({ children }: { children: React.ReactNode | React.ReactElement }) => {
     const dispatch = useAppDispatch() as any;
-    const { user } = useAppSelector(state => state.auth)
+    const { user, isLoading } = useAppSelector(state => state.auth)
 
     const router = useRouter();
     const loggedIn = isLoggedIn();
@@ -41,13 +41,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode | React.React
         dispatch(fetchUser(token))
     }, [token])
 
-
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div className='sticky top-4'>
-
-
                     <div className=" ml-6 mt-8 mb-4  text-white " >
                         <Button onClick={() => router.push('/')} className=''> <span className='flex '><HomeOutlined />{!collapsed && "  Back to home"}</span></Button>
                     </div>

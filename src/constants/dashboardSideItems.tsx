@@ -73,7 +73,7 @@ export const dashboardSideItems = (role: string | any) => {
                 children: [
                     {
                         key: 'all_services',
-                        label: <Link href={'/'}>All Services</Link>,
+                        label: <Link href={'/services/all-services'}>All Services</Link>,
                         icon: <OrderedListOutlined />
                     },
                     {

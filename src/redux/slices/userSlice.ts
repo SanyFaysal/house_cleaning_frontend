@@ -59,12 +59,12 @@ export const userSlice = createSlice({
                 state.error = '';
             })
             .addCase(fetchUser.fulfilled, (state, action) => {
-                // state.isLoading = false;
-                // state.isError = false;
-                // state.isSuccess = true;
-                // state.user = action.payload;
-                // state.error = '';
-                state.user = action.payload
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.user = action.payload;
+                state.error = '';
+
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.isLoading = false;
