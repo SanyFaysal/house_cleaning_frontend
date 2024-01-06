@@ -4,6 +4,7 @@ import Image from "next/image";
 import login_image from '../../../public/login-image.png';
 import { Button, Checkbox, Form, Input } from "antd";
 import Link from "next/link";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 type FieldType = {
     fullName?: string,
@@ -24,8 +25,11 @@ export default function page() {
 
 
     return (
-        <div className="grid lg:grid-cols-2 justify-items-center content-center h-fit ">
-            <Image src={login_image} alt="login" width={500} height={100} />
+        <div className="grid lg:grid-cols-2 justify-items-center content-center h-[100vh] ">
+            <div>
+                <Link className="" href={'/'}><ArrowLeftOutlined /> Back to home</Link>
+                <Image src={login_image} alt="login" width={500} height={100} />
+            </div>
             <div className="h-full w-full flex flex-col justify-center items-start">
                 <h1 className="text-2xl mb-5">Sinup your new Account</h1>
                 <Form
@@ -66,7 +70,7 @@ export default function page() {
                             Sign up
                         </Button>
                     </Form.Item>
-                    <p>Already have an account ? <Link href={'/login'}>Singin</Link> </p>
+                    <p>Already have an account ? <Link href={'/signin'}>Singin</Link> </p>
 
                 </Form>
             </div>

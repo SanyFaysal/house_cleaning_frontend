@@ -2,13 +2,12 @@
 
 import { Menu, MenuProps, } from "antd";
 import { Header } from "antd/es/layout/layout";
+import Link from "next/link";
 
 const items: MenuProps["items"] = [
     { key: 'home', label: 'Home' },
-    { key: 'about', label: 'About' },
-    { key: 'service', label: 'Service' },
-    { key: 'contact', label: 'Contact' },
-    { key: 'Dashboard', label: 'Dashboard' },
+    { key: 'signin', label: <Link href={'/signin'}>Signin</Link> },
+    { key: 'signup', label: <Link href={'/signup'}>Signup</Link> },
 ]
 export default function Navbar() {
     return (

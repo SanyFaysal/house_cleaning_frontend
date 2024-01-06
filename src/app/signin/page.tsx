@@ -2,28 +2,44 @@
 
 import Image from "next/image";
 import login_image from '../../../public/login-image.png';
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import Link from "next/link";
+import { authApi, useSigninMutation } from "@/redux/api/userApi";
+import { ArrowLeftOutlined } from "@ant-design/icons";
+import { setToLocalStorage } from "@/utils/local-storage";
+import { authKey } from "@/constants/storageKey";
+import { useAppDispatch } from "@/redux/hook";
+import { setUser } from "@/redux/slices/userSlice";
 
 type FieldType = {
     email?: string;
     password?: string;
 
 };
-export default function page() {
+export default function Signin() {
+    const dispatch = useAppDispatch()
+    const [signin] = useSigninMutation()
+    const onFinish = async (values: any) => {
+        try {
+            const res = await signin(values).unwrap()
+            if (res?.token && res?.data) {
+                setToLocalStorage(authKey, res.token)
+                message.success('Login success');
 
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
+                dispatch(setUser(res.data))
+            }
+        } catch (error: any) {
+            const errorMessage: any = error?.data?.message
+            message.error(errorMessage)
+        }
     };
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
-
 
     return (
-        <div className="grid lg:grid-cols-2 justify-items-center content-center h-fit ">
-            <Image src={login_image} alt="login" width={500} height={100} />
+        <div className="grid lg:grid-cols-2 justify-items-center content-center h-[100vh]">
+            <div>
+                <Link className="" href={'/'}><ArrowLeftOutlined /> Back to home</Link>
+                <Image src={login_image} alt="login" width={500} height={100} />
+            </div>
             <div className="h-full w-full flex flex-col justify-center items-start">
                 <h1 className="text-2xl mb-5">Sign in to your Account</h1>
                 <Form
@@ -31,7 +47,7 @@ export default function page() {
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
                     layout="vertical"
-                    onFinishFailed={onFinishFailed}
+
                     autoComplete="off"
                     className="mx-4 w-3/4"
                 >
