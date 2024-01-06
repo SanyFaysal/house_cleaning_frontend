@@ -2,9 +2,16 @@
 
 import Image from "next/image";
 import login_image from '../../../public/login-image.png';
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import Link from "next/link";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import { useSignupMutation } from "@/redux/api/userApi";
+import { isLoggedIn, setToLocalStorage } from "@/utils/local-storage";
+import { authKey } from "@/constants/storageKey";
+import { useAppDispatch } from "@/redux/hook";
+import { setUser } from "@/redux/slices/userSlice";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 type FieldType = {
     fullName?: string,
@@ -13,16 +20,31 @@ type FieldType = {
 
 
 };
-export default function page() {
+export default function Signup() {
 
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
+    const router = useRouter()
+    const loggedIn = isLoggedIn();
+    const dispatch = useAppDispatch()
+
+    const [signup] = useSignupMutation();
+    const onFinish = async (values: any) => {
+        try {
+            const res = await signup(values).unwrap()
+            if (res?.token && res?.data) {
+                setToLocalStorage(authKey, res.token)
+                message.success(res.message);
+                dispatch(setUser(res.data))
+                router.push('/')
+            }
+        } catch (error: any) {
+            const errorMessage: any = error?.data?.message
+            message.error(errorMessage)
+        }
     };
 
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
-
+    useEffect(() => {
+        if (loggedIn) { router.push('/') }
+    }, [loggedIn, router])
 
     return (
         <div className="grid lg:grid-cols-2 justify-items-center content-center h-[100vh] ">
@@ -37,7 +59,7 @@ export default function page() {
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
                     layout="vertical"
-                    onFinishFailed={onFinishFailed}
+
                     autoComplete="off"
                     className="mx-4 w-3/4"
                 >

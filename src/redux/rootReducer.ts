@@ -3,5 +3,5 @@ import userSlice from "./slices/userSlice";
 
 export const reducer = {
     [baseApi.reducerPath]: baseApi.reducer,
-    user: userSlice
+    auth: userSlice
 }

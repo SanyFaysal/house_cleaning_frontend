@@ -6,10 +6,13 @@ import { Button, Checkbox, Form, Input, message } from "antd";
 import Link from "next/link";
 import { authApi, useSigninMutation } from "@/redux/api/userApi";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { setToLocalStorage } from "@/utils/local-storage";
+import { isLoggedIn, setToLocalStorage } from "@/utils/local-storage";
 import { authKey } from "@/constants/storageKey";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setUser } from "@/redux/slices/userSlice";
+import { useEffect } from "react";
+import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/navigation";
 
 type FieldType = {
     email?: string;
@@ -17,6 +20,8 @@ type FieldType = {
 
 };
 export default function Signin() {
+    const router = useRouter()
+    const loggedIn = isLoggedIn();
     const dispatch = useAppDispatch()
     const [signin] = useSigninMutation()
     const onFinish = async (values: any) => {
@@ -24,16 +29,18 @@ export default function Signin() {
             const res = await signin(values).unwrap()
             if (res?.token && res?.data) {
                 setToLocalStorage(authKey, res.token)
-                message.success('Login success');
-
+                message.success(res.message);
                 dispatch(setUser(res.data))
+                router.push('/')
             }
         } catch (error: any) {
             const errorMessage: any = error?.data?.message
             message.error(errorMessage)
         }
     };
-
+    useEffect(() => {
+        if (loggedIn) { router.push('/') }
+    }, [loggedIn, router])
     return (
         <div className="grid lg:grid-cols-2 justify-items-center content-center h-[100vh]">
             <div>
