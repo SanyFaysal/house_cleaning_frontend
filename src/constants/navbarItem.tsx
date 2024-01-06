@@ -2,7 +2,7 @@ import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, MenuProps } from "antd"
 import Link from "next/link"
 
-export const pageSidebarItems = (role: string | any, handleLogout: any | null | undefined) => {
+export const navbarItem = (role: string | any, handleLogout: any | null | undefined) => {
 
     let items: MenuProps['items'];
     if (!role?.length) {
@@ -18,15 +18,24 @@ export const pageSidebarItems = (role: string | any, handleLogout: any | null | 
             {
                 key: 'cart', label: <Link href={'/'}> <ShoppingCartOutlined style={{ fontSize: "18px" }} /></Link>
             },
-            { key: 'profile ', label: <Link href={'/dashboard'}><UserOutlined style={{ fontSize: "18px" }} /> </Link> },
+            { key: 'profile ', label: <Link href={'/user'}><UserOutlined style={{ fontSize: "18px" }} /> </Link> },
             { key: 'logout ', label: <Button onClick={() => handleLogout()}>Logout </Button> },
         ]
     }
-    else if (role && role !== 'USER') {
+    else if (role && role === 'ADMIN') {
         return items = [
             { key: 'home', label: <Link href={'/'}>Home</Link> },
-            { key: 'dashboard ', label: <Link href={'/user'}>Dashboard </Link> },
+            { key: 'dashboard ', label: <Link href={'/admin'}>Dashboard </Link> },
             { key: 'profile ', label: <Link href={'/profile'}>Profile </Link> },
+            { key: 'logout ', label: <Button onClick={() => handleLogout()}>Logout </Button> },
+        ]
+    }
+    else if (role && role === 'SUPER_ADMIN') {
+        return items = [
+            { key: 'home', label: <Link href={'/'}>Home</Link> },
+            { key: 'dashboard ', label: <Link href={'/super_admin'}>Dashboard </Link> },
+            { key: 'profile ', label: <Link href={'/profile'}>Profile </Link> },
+            { key: 'logout ', label: <Button onClick={() => handleLogout()}>Logout </Button> },
         ]
     }
 }

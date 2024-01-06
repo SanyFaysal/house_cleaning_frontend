@@ -11,7 +11,7 @@ export const authApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: data
             }),
-            invalidatesTags: ["user"]
+            invalidatesTags: ["USER"]
         }),
         signup: build.mutation({
             query: (signupData) => ({
@@ -19,13 +19,25 @@ export const authApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: signupData
             }),
-            invalidatesTags: ["user"]
+            invalidatesTags: ["USER"]
         }),
+        getMe: build.query({
+            query: (token) => ({
+                url: `${USER_URL}/me`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            }),
+            providesTags: ["USER"]
+        }),
+
     }),
 
 })
 
 export const {
     useSigninMutation,
-    useSignupMutation
+    useSignupMutation,
+    useGetMeQuery
 } = authApi

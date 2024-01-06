@@ -1,6 +1,6 @@
 "use client"
 
-import { pageSidebarItems } from "@/constants/pageSidebarItems";
+import { navbarItem } from "@/constants/navbarItem";
 import { authKey } from "@/constants/storageKey";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { logoutUser } from "@/redux/slices/userSlice";
@@ -8,7 +8,6 @@ import { removeFromLocalStorage } from "@/utils/local-storage";
 import { Menu, MenuProps, } from "antd";
 import { Header } from "antd/es/layout/layout";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 
 export default function Navbar() {
@@ -19,7 +18,7 @@ export default function Navbar() {
         removeFromLocalStorage(authKey);
         dispatch(logoutUser())
     }
-    const items = pageSidebarItems(user?.role, handleLogout)
+    const items = navbarItem(user?.role, handleLogout)
 
     return (
         <Header className="" style={{ display: 'flex', alignItems: 'center', backgroundColor: "transparent", border: "0" }}>

@@ -17,7 +17,7 @@ export const dashboardSideItems = (role: string | any) => {
             },
             {
                 key: 'cart',
-                label: <Link href={'/'}>My Bookings</Link>,
+                label: <Link href={'/user/my-bookings'}>My Bookings</Link>,
                 icon: <BookOutlined />
             },
             {

@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { BellOutlined, ProfileOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { ArrowLeftOutlined, BellOutlined, HomeOutlined, ProfileOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { Breadcrumb, Button, Layout, Menu, theme } from 'antd';
 import Link from 'next/link';
 import { getFromLocalStorage, isLoggedIn } from '@/utils/local-storage';
 import { useRouter } from 'next/navigation';
@@ -45,14 +45,17 @@ const DashboardLayout = ({ children }: { children: React.ReactNode | React.React
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <div className="demo-logo-vertical mt-10" >
+                <div className='sticky top-4'>
 
-                    <Link href={'/'}>Back to home</Link>
+
+                    <div className=" ml-6 mt-8 mb-4  text-white " >
+                        <Button onClick={() => router.push('/')} className=''> <span className='flex '><HomeOutlined />{!collapsed && "  Back to home"}</span></Button>
+                    </div>
+                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
                 </div>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
             </Sider>
             <Layout>
-                <Header style={{ padding: "0 20px", background: colorBgContainer }} className=' flex gap-5 items-center justify-end'>
+                <Header style={{ padding: "0 20px", background: colorBgContainer }} className=' flex gap-5 items-center justify-end '>
 
                     <p className='text-xl'>    <BellOutlined /></p>
                     <p className='text-xl border rounded-full px-1'>    <UserOutlined /></p>
@@ -65,7 +68,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode | React.React
                     </Breadcrumb>
                     <div
                         style={{
-                            padding: 24,
+                            padding: 15,
                             minHeight: 360,
                             background: colorBgContainer,
                             borderRadius: borderRadiusLG,
