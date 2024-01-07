@@ -1,54 +1,32 @@
 'use client'
 
 import React from 'react';
-
 import {
     Button,
-    DatePicker,
     Form,
     Input,
-    InputNumber,
-    Select,
     message,
 } from 'antd';
-
-
 import CommonPageTitle from '@/components/ui/CommonPageTitle';
 import Link from 'next/link';
 import { useAppSelector } from '@/redux/hook';
-import { useGetAllCategoriesQuery } from '@/redux/api/categoryApi';
-import { arrayReformed } from '@/helpers/arrayRefortemed';
+import { useCreateCategoryMutation } from '@/redux/api/categoryApi';
 import { getFromLocalStorage } from '@/utils/local-storage';
 import { authKey } from '@/constants/storageKey';
-import { useCreateServiceMutation } from '@/redux/api/serviceApi';
 
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
-
-const normFile = (e: any) => {
-    if (Array.isArray(e)) {
-        return e;
-    }
-    return e?.fileList;
-};
 
 const AddService = () => {
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
-    const { data } = useGetAllCategoriesQuery(undefined);
-    const [addService] = useCreateServiceMutation()
+
+    const [addCategory] = useCreateCategoryMutation()
 
 
-    const handleAddService = async (values: any) => {
+    const handleAddCategory = async (data: any) => {
         try {
-            const data = {
-                ...values,
-                location: JSON.stringify(values.location),
-                serviceFeatures: JSON.stringify(values.serviceFeatures),
-                pricingTerms: JSON.stringify(values.pricingTerms ?? []),
-            }
-            const res: any = await addService({ token, data }).unwrap()
-            console.log(res)
+
+            const res: any = await addCategory({ token, data }).unwrap()
+
             if (res?.status) {
                 message.success('Added Successful');
             }
@@ -59,24 +37,24 @@ const AddService = () => {
     }
     return (
         <>
-            <CommonPageTitle title='Add Service' items={
+            <CommonPageTitle title='Add Category' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p>Add Category</p> },
+                    { title: <p className='text-gray-400'>Add Category</p> },
                 ]
             } />
 
             <Form
                 layout="vertical"
-                className='grid lg:grid-cols-3 w-full gap-x-5'
-                onFinish={handleAddService}
+                className='grid lg:grid-cols-2 w-full gap-x-5'
+                onFinish={handleAddCategory}
             >
 
-                <Form.Item rules={[{ required: true, message: 'Title name is required' }]} label="title Name" name='title'>
+                <Form.Item rules={[{ required: true, message: 'Category title is required' }]} label="Category Title" name='title'>
                     <Input />
                 </Form.Item>
 
-                <div className='w-full flex justify-end items-end h-full'>
+                <div className='w-full flex justify-start items-center mt-2'>
                     <Button type="primary" htmlType="submit">
                         Add Category
                     </Button>

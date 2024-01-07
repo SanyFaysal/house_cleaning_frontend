@@ -59,11 +59,13 @@ export default function AllServices() {
             <CommonPageTitle title='All Services' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <Link href={'/dashboard'}>All new Services</Link> },
+                    {
+                        title: <p className='text-gray-400'>All new Services</p>
+                    },
                 ]
             }>
-                <Link href={'/services/add-service'}>  <Button>Add Service</Button></Link>
-            </CommonPageTitle>
+                <Link href={'/services/ add - service'}>  <Button>Add Service</Button></Link>
+            </CommonPageTitle >
             <Table columns={columns} dataSource={data?.data} pagination={{ pageSize: 10 }} />
         </>
     )
