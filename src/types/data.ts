@@ -11,5 +11,7 @@ export type IService = {
     status?: string;
     cart?: any;
     review?: any;
+    booking?: any;
+    schedule?: any;
 
 }

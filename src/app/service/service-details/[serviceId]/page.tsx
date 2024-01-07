@@ -6,12 +6,13 @@ import { useGetServiceByIdQuery } from "@/redux/api/serviceApi"
 
 import { Breadcrumb, Button } from "antd"
 import Link from "next/link"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { BiArrowFromRight, BiBarChartAlt2 } from "react-icons/bi"
 import { GoDot, GoDotFill, GoLocation } from 'react-icons/go'
 import { MdOutlineStarRate } from "react-icons/md"
 
 export default function ServiceDetails() {
+    const router = useRouter()
     const params = useParams()
     const { data } = useGetServiceByIdQuery(params?.serviceId)
     const service = data?.data;
@@ -31,7 +32,7 @@ export default function ServiceDetails() {
                     </div>
 
                     {/* <div className="  w-fit  py-1 rounded"> */}
-                    <button className="px-5 py-2 text-sky-500 bg-white rounded">Add Booking </button>
+                    <button onClick={() => router.push(`/booking/${service?.id}`)} className="px-5 py-2 text-sky-500 bg-white rounded">Add Booking </button>
                     {/* </div> */}
                 </div>
 

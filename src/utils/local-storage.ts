@@ -21,6 +21,7 @@ export const isLoggedIn = () => {
   const authToken = getFromLocalStorage(authKey)
   if (authToken) {
     const decodedData = decodedToken(authToken) as any;
+    console.log({ decodedData })
     if (decodedData?.id) return true
     else return false;
   } else {

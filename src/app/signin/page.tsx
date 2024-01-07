@@ -20,8 +20,9 @@ type FieldType = {
 
 };
 export default function Signin() {
+    const { user } = useAppSelector(state => state.auth)
     const router = useRouter()
-    const loggedIn = isLoggedIn();
+
     const dispatch = useAppDispatch()
     const [signin] = useSigninMutation()
     const onFinish = async (values: any) => {
@@ -39,8 +40,8 @@ export default function Signin() {
         }
     };
     useEffect(() => {
-        if (loggedIn) { router.push('/') }
-    }, [loggedIn, router])
+        if (user?.id) { router.push('/') }
+    }, [user, router])
     return (
         <div className="grid lg:grid-cols-2 justify-items-center content-center h-[100vh]">
             <div>
