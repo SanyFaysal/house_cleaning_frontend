@@ -52,7 +52,7 @@ const AddBooking = () => {
 
             <Steps current={current} items={items} />
 
-            <div className='bg-gray-100 px-5 py-8 rounded mt-3 min-h-[50vh]'>{steps[current].content}</div>
+            <div className='bg-gray-100 px-5 py-8 rounded mt-3 min-h-[40vh]'>{steps[current].content}</div>
             <div className='mb-5 flex justify-end' style={{ marginTop: 24 }}>
                 {current > 0 && (
                     <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
