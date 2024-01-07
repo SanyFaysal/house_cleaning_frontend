@@ -41,10 +41,7 @@ export default function AllCategories() {
 
     ];
 
-
     const { data } = useGetAllCategoriesQuery(undefined);
-
-
 
     return (
         <>
