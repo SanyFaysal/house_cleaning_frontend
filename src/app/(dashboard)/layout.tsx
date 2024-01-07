@@ -61,11 +61,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode | React.React
                     <p className='text-xl border rounded-full px-1'>    <UserOutlined /></p>
 
                 </Header>
-                <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
+                <Content style={{ margin: '10px 16px' }}>
+
                     <div
                         style={{
                             padding: 15,

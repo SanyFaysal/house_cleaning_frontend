@@ -7,40 +7,30 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Table } from "antd";
 import Link from "next/link";
 
-export default function AllServices() {
+export default function AllCategories() {
     const { user } = useAppSelector(state => state.auth)
     const columns = [
         {
-            title: 'Name',
+            title: 'Title',
             dataIndex: 'serviceName',
-            width: 150,
+
         },
         {
-            title: 'Price (TK)',
+            title: 'Total Services',
             dataIndex: 'price',
-            width: 150,
-        },
-        {
-            title: 'location',
-            dataIndex: 'location',
-            width: 150,
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-            width: 150,
-            render: (_: any, record: { key: React.Key }) => <div className="flex gap-2">
-                <button className=" px-2 border rounded-xl bg-slate-100 ">Ongoing</button>
-
-            </div>
 
         },
+        {
+            title: 'Created At',
+            dataIndex: 'createdAt',
+
+        },
+
         {
             title: 'Action',
             dataIndex: 'action',
             width: 150,
             render: (_: any, record: { key: React.Key }) => <div className="flex gap-2">
-                <button className="px-2 py-1 border rounded-lg hover:text-green-500 hover:border-green-500"><EyeOutlined /></button>
                 <button className="px-2 py-1 border rounded-lg hover:text-sky-500 hover:border-sky-500"><EditOutlined /></button>
                 <button className="px-2 py-1 border rounded-lg hover:text-red-500 hover:border-red-500"><DeleteOutlined /></button>
             </div>
@@ -59,7 +49,7 @@ export default function AllServices() {
             <CommonPageTitle title='All Services' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <Link href={'/dashboard'}>All new Services</Link> },
+                    { title: <Link href={'/dashboard'}>All Categories</Link> },
                 ]
             }>
                 <Link href={'/services/add-service'}>  <Button>Add Service</Button></Link>

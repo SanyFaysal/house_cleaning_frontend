@@ -1,7 +1,14 @@
+
+
 import { BookOutlined, HistoryOutlined, OrderedListOutlined, PlusOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, MenuProps } from "antd"
 import Link from "next/link"
-
+import {
+    BiCategory, BiCustomize
+} from 'react-icons/bi'
+import {
+    MdFormatListBulletedAdd
+} from 'react-icons/md'
 export const dashboardSideItems = (role: string | any) => {
 
     let items: MenuProps['items'];
@@ -78,8 +85,24 @@ export const dashboardSideItems = (role: string | any) => {
                     },
                     {
                         key: 'add_services',
-                        label: <Link href={'/'}>Add Service</Link>,
-                        icon: <PlusOutlined />
+                        label: <Link href={'/services/add-service'}>Add Service</Link>,
+                        icon: <MdFormatListBulletedAdd className='text-xl' />
+
+                    },
+                    {
+                        key: 'all_categories',
+                        label: <Link href={'/services/all-categories'}>All Categories</Link>,
+                        icon: <BiCategory />
+
+
+                    },
+
+
+                    {
+                        key: 'add_category',
+                        label: <Link href={'/services/add-category'}>Add Category</Link>,
+                        icon: <BiCustomize />
+
                     }
                 ]
             },
