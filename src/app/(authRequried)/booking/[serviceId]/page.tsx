@@ -1,29 +1,36 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, message, Steps, theme } from 'antd';
 import { useParams } from 'next/navigation';
 import { useGetServiceByIdQuery } from '@/redux/api/serviceApi';
 import ScheduleManagementForm from '@/components/booking_component/ScheduleManagementForm';
+import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
+import PersonalizeInfoForm from '@/components/booking_component/PersonalizeInfoForm';
+import AddressForm from '@/components/booking_component/AddressForm';
 const AddBooking = () => {
     const params = useParams()
     const { data } = useGetServiceByIdQuery(params?.serviceId)
     const service = data?.data;
     const { token } = theme.useToken();
     const [current, setCurrent] = useState(0);
-    const [goNext, setGoNext] = useState<boolean>();
+    const [goNext, setGoNext] = useState<boolean>(false);
     const next = () => {
-        if (current === 0 && !goNext) {
-
-            return message.error('Please select schedule date and time')
+        if (!goNext) {
+            return message.error('Please fill up all credentials')
+        } else {
+            setCurrent(current + 1);
+            setToLocalStorage('step', current + 1)
         }
-        setCurrent(current + 1);
-
     };
 
     const prev = () => {
         setCurrent(current - 1);
+        setToLocalStorage('step', current - 1)
     };
-
+    useEffect(() => {
+        const currentStep: any = getFromLocalStorage('step') ? Number(getFromLocalStorage('step')) as number : 0
+        setCurrent(currentStep)
+    }, [])
     const steps = [
         {
             title: 'Schedule Management',
@@ -31,20 +38,29 @@ const AddBooking = () => {
         },
         {
             title: 'Personalize your Information',
-            content: 'Second-content',
+            content: <PersonalizeInfoForm setGoNext={setGoNext} />,
         },
         {
             title: 'Share your address',
-            content: 'Last-content',
+            content: <AddressForm setGoNext={setGoNext} />,
+        },
+        {
+            title: 'Preview Details',
+            content: <AddressForm setGoNext={setGoNext} />,
         },
     ];
     const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
+
+
+    const handleAddBooking = () => {
+
+    }
     return (
         <>
 
             <div className="mb-5 text-center pt-10 bg-gray-100 pb-12 px-12 mx-[-48px] ">
-                <h2 className=' text-sky-500 text-2xl'>Add Bookings for</h2>
+                <h2 className=' text-sky-500 text-2xl'>Bookings for</h2>
                 <h1 className="text-2xl    mb-3">{service?.serviceName}</h1>
                 <h1 className="text-xl  text-gray-800   mb-3">{service?.price} Taka</h1>
             </div>
@@ -64,7 +80,7 @@ const AddBooking = () => {
                     </Button>
                 )}
                 {current === steps.length - 1 && (
-                    <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                    <Button type="primary" onClick={handleAddBooking}>
                         Done
                     </Button>
                 )}

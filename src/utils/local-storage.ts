@@ -1,7 +1,7 @@
 import { authKey } from "@/constants/storageKey"
 import { decodedToken } from "./jwt"
 
-export const setToLocalStorage = (key: string, token: string) => {
+export const setToLocalStorage = (key: string, token: string | any) => {
   if (!key || typeof window === "undefined") {
     return ""
   }

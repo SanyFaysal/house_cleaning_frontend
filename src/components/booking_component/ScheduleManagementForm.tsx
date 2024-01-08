@@ -11,6 +11,7 @@ import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
 export default function ScheduleManagementForm({
     service, setGoNext }
     : { service: IService, setGoNext: any }) {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [schedules, setSchedules] = useState<any>();
     const reformedSchedule = scheduleReformed(service);
     const getBookingData: any = getFromLocalStorage('bookingData')?.length ? JSON.parse(getFromLocalStorage('bookingData') as string) : {};
@@ -22,32 +23,39 @@ export default function ScheduleManagementForm({
             id: ""
         }
         setToLocalStorage('bookingData', JSON.stringify(bookingData))
-        setSchedules(schedule)
+        setSchedules(schedule);
+        setIsLoading(!isLoading)
     }
     const handleSelectScheduleTime = (schedule: any) => {
         const bookingData = {
             ...getBookingData,
             id: schedule?.id
         }
-        setToLocalStorage('bookingData', JSON.stringify(bookingData))
+        setToLocalStorage('bookingData', JSON.stringify(bookingData));
+        setIsLoading(!isLoading)
     }
 
     useEffect(() => {
-        setSchedules(getBookingData?.date)
+        if (getBookingData?.date) {
+            setSchedules(getBookingData?.date)
+        }
         if (getBookingData?.date && getBookingData?.id) {
             setGoNext(true)
+        } else {
+            setGoNext(false)
         }
-    }, [getBookingData])
+    }, [isLoading])
     return (
         <div>
             <Content className="flex flex-col items-center">
-                <h1 className="text-xl mb-6 text-center">Select a Date  schedule</h1>
-
-                <div className="flex justify-center gap-5">
+                <h1 className="text-xl font-bold text-gray-800  text-center">Schedule Time</h1>
+                <h2 className="text-xl text-semibold mb-5 mt-2">When would you like to take your service ?</h2>
+                <p className="mb-3 text-lg text-gray-800 mt-5">Select your prefer date</p>
+                <div className="flex justify-center gap-5 ">
                     {
                         reformedSchedule?.map((schedule: any, index: number) => (<div key={index}>
                             <button onClick={() => handleSelectScheduleDate(schedule)} className="flex gap-4 mb-5">
-                                <span className={`bg-white p-4 border  rounded
+                                <span className={`bg-white p-4 text-2xl w-28 border  rounded
                                 ${getBookingData?.date?.date === schedule?.date && "bg-sky-500 text-white"}`}> {formateDate(schedule?.date)}</span>
                             </button>
                         </div>)
@@ -57,7 +65,7 @@ export default function ScheduleManagementForm({
 
                 </div>
                 {schedules && <div className=" my-5">
-                    <h3 className="text-xl my-5 text-center">Choose from Available Time Schedule</h3>
+                    <h3 className="text-lg my-5 text-center text-gray-800">Select your prefer time</h3>
 
                     <div className="flex flex-wrap mx-auto justify-center gap-10">
 
@@ -66,13 +74,13 @@ export default function ScheduleManagementForm({
                                 <button onClick={() => !scheduleTime?.booking
                                     && handleSelectScheduleTime(scheduleTime)}
                                     key={index}
-                                    className={`bg-white p-4 rounded
+                                    className={`bg-white p-3 rounded text-md border font-semibold
                                       ${scheduleTime?.booking ? 'text-gray-200' : ''}
                                       ${getBookingData?.id === scheduleTime?.id ? 'text-white bg-sky-500' : ''}
                                       `}
                                 >
-                                    {formateTime(scheduleTime?.startTime)}
-                                    - {formateTime(scheduleTime?.endTime)}
+                                    {formateTime(scheduleTime?.startTime)} <br /><hr />
+                                    {formateTime(scheduleTime?.endTime)}
                                 </button>
 
                             )
