@@ -1,11 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import { Breadcrumb, Button, message, Steps, theme } from 'antd';
+import { Button, message, Steps, theme } from 'antd';
 import { useParams } from 'next/navigation';
 import { useGetServiceByIdQuery } from '@/redux/api/serviceApi';
-import { BiBarChartAlt2 } from 'react-icons/bi';
-import { MdOutlineStarRate } from 'react-icons/md';
-import Link from 'next/link';
 import ScheduleManagementForm from '@/components/booking_component/ScheduleManagementForm';
 const AddBooking = () => {
     const params = useParams()
@@ -13,28 +10,27 @@ const AddBooking = () => {
     const service = data?.data;
     const { token } = theme.useToken();
     const [current, setCurrent] = useState(0);
-    const [selectSchedule, setSelectSchedule] = useState<any>();
+    const [goNext, setGoNext] = useState<boolean>();
     const next = () => {
-        if (current === 0 && !selectSchedule) {
+        if (current === 0 && !goNext) {
+
             return message.error('Please select schedule date and time')
         }
         setCurrent(current + 1);
+
     };
 
     const prev = () => {
         setCurrent(current - 1);
     };
 
-
-
-
     const steps = [
         {
             title: 'Schedule Management',
-            content: <ScheduleManagementForm service={service} selectSchedule={selectSchedule} setSelectSchedule={setSelectSchedule} />,
+            content: <ScheduleManagementForm service={service} setGoNext={setGoNext} />,
         },
         {
-            title: 'Personalize your profile',
+            title: 'Personalize your Information',
             content: 'Second-content',
         },
         {

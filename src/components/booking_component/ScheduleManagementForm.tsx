@@ -5,14 +5,39 @@ import { formateDate, formateTime } from "@/helpers/formate_date_time";
 import { IService } from "@/types/data";
 import { DatePicker, Input } from "antd";
 import { Content } from "antd/es/layout/layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
 
 export default function ScheduleManagementForm({
-    service, selectSchedule, setSelectSchedule }
-    : { service: IService, selectSchedule: any, setSelectSchedule: any }) {
+    service, setGoNext }
+    : { service: IService, setGoNext: any }) {
     const [schedules, setSchedules] = useState<any>();
     const reformedSchedule = scheduleReformed(service);
+    const getBookingData: any = getFromLocalStorage('bookingData')?.length ? JSON.parse(getFromLocalStorage('bookingData') as string) : {};
 
+    const handleSelectScheduleDate: any = (schedule: any) => {
+        const bookingData = {
+            ...getBookingData,
+            date: schedule,
+            id: ""
+        }
+        setToLocalStorage('bookingData', JSON.stringify(bookingData))
+        setSchedules(schedule)
+    }
+    const handleSelectScheduleTime = (schedule: any) => {
+        const bookingData = {
+            ...getBookingData,
+            id: schedule?.id
+        }
+        setToLocalStorage('bookingData', JSON.stringify(bookingData))
+    }
+
+    useEffect(() => {
+        setSchedules(getBookingData?.date)
+        if (getBookingData?.date && getBookingData?.id) {
+            setGoNext(true)
+        }
+    }, [getBookingData])
     return (
         <div>
             <Content className="flex flex-col items-center">
@@ -21,8 +46,9 @@ export default function ScheduleManagementForm({
                 <div className="flex justify-center gap-5">
                     {
                         reformedSchedule?.map((schedule: any, index: number) => (<div key={index}>
-                            <button onClick={() => setSchedules(schedule)} className="flex gap-4 mb-5">
-                                <span className={`bg-white p-4 border  rounded ${schedules?.date === schedule?.date && "bg-sky-500 text-white"}`}> {formateDate(schedule?.date)}</span>
+                            <button onClick={() => handleSelectScheduleDate(schedule)} className="flex gap-4 mb-5">
+                                <span className={`bg-white p-4 border  rounded
+                                ${getBookingData?.date?.date === schedule?.date && "bg-sky-500 text-white"}`}> {formateDate(schedule?.date)}</span>
                             </button>
                         </div>)
 
@@ -38,13 +64,11 @@ export default function ScheduleManagementForm({
                         {
                             schedules?.scheduleTime?.map((scheduleTime: any, index: number) =>
                                 <button onClick={() => !scheduleTime?.booking
-                                    && setSelectSchedule(scheduleTime)}
+                                    && handleSelectScheduleTime(scheduleTime)}
                                     key={index}
                                     className={`bg-white p-4 rounded
                                       ${scheduleTime?.booking ? 'text-gray-200' : ''}
-                                      ${selectSchedule?.id === scheduleTime?.id ? 'text-white bg-sky-500' : ''}
-                                      
-                                      
+                                      ${getBookingData?.id === scheduleTime?.id ? 'text-white bg-sky-500' : ''}
                                       `}
                                 >
                                     {formateTime(scheduleTime?.startTime)}
