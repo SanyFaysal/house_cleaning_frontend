@@ -13,8 +13,11 @@ const AddBooking = () => {
     const service = data?.data;
     const { token } = theme.useToken();
     const [current, setCurrent] = useState(0);
-
+    const [selectSchedule, setSelectSchedule] = useState<any>();
     const next = () => {
+        if (current === 0 && !selectSchedule) {
+            return message.error('Please select schedule date and time')
+        }
         setCurrent(current + 1);
     };
 
@@ -28,7 +31,7 @@ const AddBooking = () => {
     const steps = [
         {
             title: 'Schedule Management',
-            content: <ScheduleManagementForm service={service} />,
+            content: <ScheduleManagementForm service={service} selectSchedule={selectSchedule} setSelectSchedule={setSelectSchedule} />,
         },
         {
             title: 'Personalize your profile',

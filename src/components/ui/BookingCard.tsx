@@ -1,4 +1,4 @@
-import { formateDate, formateTime } from "@/helpers/time_date/formate_date_time";
+import { formateDate, formateTime } from "@/helpers/formate_date_time";
 import { MoreOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 

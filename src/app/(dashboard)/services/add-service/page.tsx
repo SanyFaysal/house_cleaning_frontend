@@ -17,7 +17,7 @@ import CommonPageTitle from '@/components/ui/CommonPageTitle';
 import Link from 'next/link';
 import { useAppSelector } from '@/redux/hook';
 import { useGetAllCategoriesQuery } from '@/redux/api/categoryApi';
-import { arrayReformed } from '@/helpers/arrayRefortemed';
+import { arrayReformed } from '@/helpers/category_table_array_reformed';
 import { getFromLocalStorage } from '@/utils/local-storage';
 import { authKey } from '@/constants/storageKey';
 import { useCreateServiceMutation } from '@/redux/api/serviceApi';
