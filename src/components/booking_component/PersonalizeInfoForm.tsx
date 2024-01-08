@@ -9,7 +9,7 @@ import { useEffect } from "react";
 export default function PersonalizeInfoForm({ setGoNext }: { setGoNext: any }) {
     const { user }: any = useAppSelector(state => state.auth);
 
-    const getBookingData: any = JSON.parse(getFromLocalStorage('bookingData') as string);
+    const getBookingData: any = getFromLocalStorage('bookingData')?.length ? JSON.parse(getFromLocalStorage('bookingData') as string) : {};
 
     const handleAddInfo = (values: any) => {
 

@@ -1,17 +1,25 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { Button, message, Steps, theme } from 'antd';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useGetServiceByIdQuery } from '@/redux/api/serviceApi';
 import ScheduleManagementForm from '@/components/booking_component/ScheduleManagementForm';
 import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
 import PersonalizeInfoForm from '@/components/booking_component/PersonalizeInfoForm';
 import AddressForm from '@/components/booking_component/AddressForm';
+import PreviewDetails from '@/components/booking_component/PreviewDetails';
+import { useAppSelector } from '@/redux/hook';
+import { useAddBookingMutation } from '@/redux/api/booking.api';
+import { authKey } from '@/constants/storageKey';
 const AddBooking = () => {
+
+    const router = useRouter()
+    const token = getFromLocalStorage(authKey)
     const params = useParams()
+    const { user } = useAppSelector(state => state.auth);
     const { data } = useGetServiceByIdQuery(params?.serviceId)
     const service = data?.data;
-    const { token } = theme.useToken();
+    const getBookingData: any = getFromLocalStorage('bookingData')?.length ? JSON.parse(getFromLocalStorage('bookingData') as string) : {};
     const [current, setCurrent] = useState(0);
     const [goNext, setGoNext] = useState<boolean>(false);
     const next = () => {
@@ -30,6 +38,7 @@ const AddBooking = () => {
     useEffect(() => {
         const currentStep: any = getFromLocalStorage('step') ? Number(getFromLocalStorage('step')) as number : 0
         setCurrent(currentStep)
+
     }, [])
     const steps = [
         {
@@ -46,16 +55,35 @@ const AddBooking = () => {
         },
         {
             title: 'Preview Details',
-            content: <AddressForm setGoNext={setGoNext} />,
+            content: <PreviewDetails />,
         },
     ];
     const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
-
-
-    const handleAddBooking = () => {
-
+    const [addBooking] = useAddBookingMutation()
+    const handleAddBooking = async () => {
+        const { id, ...userInfo } = getBookingData?.user;
+        try {
+            const bookingData = {
+                ...userInfo,
+                ...getBookingData?.address,
+                serviceId: service?.id,
+                userId: user?.id,
+                scheduleId: getBookingData?.id,
+            }
+            const res = await addBooking({ token, data: bookingData }).unwrap()
+            if (res?.status) {
+                message.success(res.message);
+                setToLocalStorage('bookingData', JSON.stringify("{}"));
+                setToLocalStorage('step', 0);
+                setCurrent(0)
+            }
+        } catch (error: any) {
+            const errorMessage: any = error?.data?.message
+            message.error(errorMessage)
+        }
     }
+
     return (
         <>
 

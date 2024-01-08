@@ -14,8 +14,8 @@ export default function ScheduleManagementForm({
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [schedules, setSchedules] = useState<any>();
     const reformedSchedule = scheduleReformed(service);
-    const getBookingData: any = getFromLocalStorage('bookingData')?.length ? JSON.parse(getFromLocalStorage('bookingData') as string) : {};
 
+    const getBookingData: any = getFromLocalStorage('bookingData')?.length ? JSON.parse(getFromLocalStorage('bookingData') as string) : {};
     const handleSelectScheduleDate: any = (schedule: any) => {
         const bookingData = {
             ...getBookingData,
@@ -74,7 +74,7 @@ export default function ScheduleManagementForm({
                                 <button onClick={() => !scheduleTime?.booking
                                     && handleSelectScheduleTime(scheduleTime)}
                                     key={index}
-                                    className={`bg-white p-3 rounded text-md border font-semibold
+                                    className={`bg-white p-3 rounded  border 
                                       ${scheduleTime?.booking ? 'text-gray-200' : ''}
                                       ${getBookingData?.id === scheduleTime?.id ? 'text-white bg-sky-500' : ''}
                                       `}

@@ -5,10 +5,10 @@ export const formateTime = (time: string) => {
     return dayjs(time).format('hh : mm A')
 }
 export const formateDate = (date: any) => {
-    const actualDate = date.split('T')[0];
+    const actualDate = date?.split('T')[0];
     return dayjs(actualDate).format('DD MMM ddd')
 }
 export const formateDateForSchedule = (date: any) => {
-    const actualDate = date.split('T')[0];
+    const actualDate = date?.split('T')[0];
     return dayjs(actualDate).format('YYYY-MM-DD')
 }
