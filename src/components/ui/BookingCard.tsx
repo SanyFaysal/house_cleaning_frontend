@@ -1,11 +1,48 @@
+import { authKey } from "@/constants/storageKey";
 import { formateDate, formateTime } from "@/helpers/formate_date_time";
+import { useCancelBookingMutation } from "@/redux/api/booking.api";
+import { getFromLocalStorage } from "@/utils/local-storage";
 import { MoreOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Dropdown, MenuProps, message } from "antd";
 
 
 export default function BookingCard({ booking }: { booking: any }) {
+    const token = getFromLocalStorage(authKey);
+    const [cancelBooking] = useCancelBookingMutation()
+    const handleCancelBooking = async () => {
+        try {
+            const data = {
+                status: 'CANCELLED'
+            }
+            if (booking?.status === 'CANCELLED') {
+                return message.error('Already cancelled')
+            }
+            const res: any = await cancelBooking({ id: booking?.id, token, data }).unwrap()
+            if (res.status) {
+                message.success(res.message)
+            }
+        } catch (error: any) {
+            const errorMessage: any = error?.data?.message
+            message.error(errorMessage)
+        }
+    }
+
+    const items: MenuProps['items'] = [
+        {
+            key: '1',
+            label: (
+                <p onClick={handleCancelBooking}>
+                    Cancel Booking
+                </p>
+            ),
+        },
+
+    ];
     return (
-        <div className=" p-4 rounded-lg bg-white">
+        <div className={`p-4 rounded-lg bg-white
+        
+      
+        `}>
             <div className="flex justify-between">
 
                 <div>
@@ -16,9 +53,18 @@ export default function BookingCard({ booking }: { booking: any }) {
                     </div>
                 </div>
                 <div className="flex gap-2">
-                    <p>  <span className="border border-orange-500 text-orange-500 rounded-full px-4">{booking?.status}</span></p>
+                    <p>
+
+                        <span className={`border   rounded-full px-2
+                         ${booking?.status === 'CANCELLED' ?
+                                'border-red-500 text-red-500'
+                                : booking?.status === 'PENDING' ? "" : "border-sky-500 text-sky-500"} `}>{booking?.status}</span>
+                    </p>
                     <div>
-                        <MoreOutlined className="text-xl" />
+                        <Dropdown menu={{ items }}
+                            trigger={['click']} placement="bottomRight">
+                            <MoreOutlined className="text-xl" />
+                        </Dropdown>
                     </div>
                 </div>
             </div>
@@ -73,6 +119,6 @@ export default function BookingCard({ booking }: { booking: any }) {
             <p className="mt-2 text-lg">
                 TK:   {booking?.service?.price} </p>
 
-        </div>
+        </div >
     )
 }
