@@ -32,7 +32,8 @@ export default function AllCategories() {
             width: 150,
             render: (_: any, record: any) => <div className="flex gap-2">
                 <button className="px-2 py-1 border rounded-lg hover:text-white hover:bg-sky-500"><EditOutlined /></button>
-                {!record?.service?.length ? <button onClick={() => console.log({ clicked: true })} className={`px-2 py-1 border rounded-lg hover:text-white hover:bg-red-500 `} ><DeleteOutlined /></button>
+                {!record?.service?.length ?
+                    <button onClick={() => console.log({ clicked: true })} className={`px-2 py-1 border rounded-lg hover:text-white hover:bg-red-500 `} ><DeleteOutlined /></button>
                     : <button className="px-2 py-1 border rounded-lg text-gray-300 cursor-not-allowed hover:border-gray-200"><DeleteOutlined /></button>}
 
             </div>

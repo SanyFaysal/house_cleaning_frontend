@@ -5,12 +5,16 @@ import { Button } from "antd";
 
 export default function BookingCard({ booking }: { booking: any }) {
     return (
-        <div className="border p-3 rounded-lg">
+        <div className=" p-4 rounded-lg bg-white">
             <div className="flex justify-between">
 
-                <span className="text-lg">{formateDate(booking?.schedule?.date)}</span>
-
-
+                <div>
+                    <span className="text-2xl">{formateDate(booking?.schedule?.date)}</span> at   <div className="flex gap-2 items-center w-fit   mb-2  rounded-lg ">
+                        <span className="font-semibold ">{formateTime(booking?.schedule?.startTime)}</span>
+                        To
+                        <span className="  font-semibold">{formateTime(booking?.schedule?.endTime)} </span>
+                    </div>
+                </div>
                 <div className="flex gap-2">
                     <p>  <span className="border border-orange-500 text-orange-500 rounded-full px-4">{booking?.status}</span></p>
                     <div>
@@ -18,16 +22,55 @@ export default function BookingCard({ booking }: { booking: any }) {
                     </div>
                 </div>
             </div>
-            <div className="flex gap-2 items-center w-fit   mb-2  rounded-lg ">
-                <span className="font-semibold ">{formateTime(booking?.schedule?.startTime)}</span>
-                To
-                <span className="  font-semibold">{formateTime(booking?.schedule?.endTime)} </span>
-            </div>
-            <p>
-                {booking?.service?.serviceName}
 
-            </p>
-            <p className="mt-2">
+            <div>
+                <p className="font-semibold text-lg">Service </p>
+                <p>
+                    {booking?.service?.serviceName}
+
+                </p>
+            </div>
+            <div>
+                <h1 className="font-semibold text-lg">User Contact</h1>
+                <div className="flex gap-5">
+                    <div>
+                        <h1 className="font-semibold">Name</h1>
+                        <h1>{booking?.fullName}</h1>
+                    </div>
+                    <div>
+                        <h1 className="font-semibold">Email</h1>
+                        <h1>{booking?.email}</h1>
+                    </div>
+                    <div>
+                        <h1 className="font-semibold">Phone Number</h1>
+                        <h1>{booking?.phoneNumber}</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <h1 className="font-semibold text-lg">Address</h1>
+                <div className="flex gap-5">
+                    <div>
+                        <h1 className="font-semibold">Area</h1>
+                        <h1>{booking?.area}</h1>
+                    </div>
+                    <div>
+                        <h1 className="font-semibold">Sector No.</h1>
+                        <h1>{booking?.sectorNo}</h1>
+                    </div>
+                    <div>
+                        <h1 className="font-semibold">Road No.</h1>
+                        <h1>{booking?.roadNo}</h1>
+                    </div>
+                    <div>
+                        <h1 className="font-semibold">Block No.</h1>
+                        <h1>{booking?.blockNo}</h1>
+                    </div>
+
+                </div>
+            </div>
+            <p className="mt-2 text-lg">
                 TK:   {booking?.service?.price} </p>
 
         </div>

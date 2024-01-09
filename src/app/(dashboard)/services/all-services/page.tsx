@@ -23,6 +23,14 @@ export default function AllServices() {
         {
             title: 'location',
             dataIndex: 'location',
+            render: (location: any) => <p>
+                {location}</p>,
+            width: 150,
+        },
+        {
+            title: 'Booking',
+            dataIndex: 'booking',
+            render: (booking: any) => <p> {booking?.length}</p>,
             width: 150,
         },
         {
@@ -40,9 +48,9 @@ export default function AllServices() {
             dataIndex: 'action',
             width: 150,
             render: (_: any, record: { key: React.Key }) => <div className="flex gap-2">
-                <button className="px-2 py-1 border rounded-lg hover:text-green-500 hover:border-green-500"><EyeOutlined /></button>
-                <button className="px-2 py-1 border rounded-lg hover:text-sky-500 hover:border-sky-500"><EditOutlined /></button>
-                <button className="px-2 py-1 border rounded-lg hover:text-red-500 hover:border-red-500"><DeleteOutlined /></button>
+                <button className="px-2 py-1 border rounded-lg hover:bg-blue-500 hover:text-white"><EyeOutlined /></button>
+                <button className="px-2 py-1 border rounded-lg hover:bg-sky-500 hover:text-white"><EditOutlined /></button>
+                <button onClick={() => handleDeleteService(record)} className="px-2 py-1 border rounded-lg hover:bg-red-500 hover:text-white"><DeleteOutlined /></button>
             </div>
 
         },
@@ -52,7 +60,9 @@ export default function AllServices() {
 
     const { data } = useGetAllServiceQuery(undefined);
 
-
+    const handleDeleteService = (data: any) => {
+        console.log({ data })
+    }
 
     return (
         <>
@@ -66,7 +76,7 @@ export default function AllServices() {
             }>
                 <Link href={'/services/ add - service'}>  <Button>Add Service</Button></Link>
             </CommonPageTitle >
-            <Table columns={columns} dataSource={data?.data} pagination={{ pageSize: 10 }} />
+            <Table columns={columns} bordered dataSource={data?.data} pagination={{ pageSize: 10 }} />
         </>
     )
 }
