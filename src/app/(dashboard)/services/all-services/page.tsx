@@ -43,7 +43,7 @@ export default function AllServices() {
             title: 'Status',
             dataIndex: 'status',
             width: 150,
-            render: (_: any, record: { key: React.Key }) => <div className="flex gap-2">
+            render: (_: any, record: any) => <div className="flex gap-2">
                 <button className=" px-2 border rounded-xl bg-slate-100 ">Ongoing</button>
 
             </div>
@@ -53,9 +53,9 @@ export default function AllServices() {
             title: 'Action',
             dataIndex: 'action',
             width: 150,
-            render: (_: any, record: { key: any }) => <div className="flex gap-2">
-                <button onClick={() => router.push(`/services/edit-service/${record?.id}`)} className="px-2 py-1  border rounded-lg hover:bg-blue-500 hover:text-white"><EyeOutlined /></button>
-                <button className="px-2 py-1 border rounded-lg hover:bg-sky-500 hover:text-white"><EditOutlined /></button>
+            render: (_: any, record: any) => <div className="flex gap-2">
+                <button className="px-2 py-1  border rounded-lg hover:bg-blue-500 hover:text-white"><EyeOutlined /></button>
+                <button onClick={() => router.push(`/services/edit-service/${record?.id}`)} className="px-2 py-1 border rounded-lg hover:bg-sky-500 hover:text-white"><EditOutlined /></button>
                 <button onClick={() => handleDeleteService(record)} className="px-2 py-1 border rounded-lg hover:bg-red-500 hover:text-white"><DeleteOutlined /></button>
             </div>
 

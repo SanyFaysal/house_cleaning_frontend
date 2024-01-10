@@ -91,10 +91,10 @@ const EditService = () => {
     }
     return (
         <>
-            <CommonPageTitle title='Add Service' items={
+            <CommonPageTitle title='Edit Service' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>All Services</p> },
+                    { title: <p className='text-gray-400'>Edit Service</p> },
                 ]
             } />
 

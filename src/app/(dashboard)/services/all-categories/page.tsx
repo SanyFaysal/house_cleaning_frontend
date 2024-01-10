@@ -7,8 +7,10 @@ import { useAppSelector } from "@/redux/hook";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Table } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function AllCategories() {
+    const router = useRouter()
     const { user } = useAppSelector(state => state.auth)
     const columns = [
         {
@@ -31,7 +33,7 @@ export default function AllCategories() {
             dataIndex: 'action',
             width: 150,
             render: (_: any, record: any) => <div className="flex gap-2">
-                <button className="px-2 py-1 border rounded-lg hover:text-white hover:bg-sky-500"><EditOutlined /></button>
+                <button onClick={() => router.push(`/services/edit-category/${record?.id}`)} className="px-2 py-1 border rounded-lg hover:text-white hover:bg-sky-500"><EditOutlined /></button>
                 {!record?.service?.length ?
                     <button onClick={() => console.log({ clicked: true })} className={`px-2 py-1 border rounded-lg hover:text-white hover:bg-red-500 `} ><DeleteOutlined /></button>
                     : <button className="px-2 py-1 border rounded-lg text-gray-300 cursor-not-allowed hover:border-gray-200"><DeleteOutlined /></button>}
@@ -46,13 +48,13 @@ export default function AllCategories() {
 
     return (
         <>
-            <CommonPageTitle title='All Categories' items={
+            <CommonPageTitle title='All Category' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>All Categories</p> },
+                    { title: <p className='text-gray-400'>Edit Category</p> },
                 ]
             }>
-                <Link href={'/services/add-category'}>  <Button>Add Category</Button></Link>
+                <Link href={'/services/add-category'}>  <Button>Update Category</Button></Link>
             </CommonPageTitle>
             <Table columns={columns} dataSource={data?.data} pagination={{ pageSize: 10 }} />
         </>

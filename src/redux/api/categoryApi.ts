@@ -16,11 +16,29 @@ export const categoryApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["CATEGORY"]
         }),
+        updateCategory: build.mutation({
+            query: ({ token, data, id }) => ({
+                url: `${CATEGORY_URL}/${id}`,
+                method: "PATCH",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+                body: data
+            }),
+            invalidatesTags: ["CATEGORY"]
+        }),
         getAllCategories: build.query({
             query: (token) => ({
                 url: `${CATEGORY_URL}/all`,
                 method: "GET",
 
+            }),
+            providesTags: ["CATEGORY"]
+        }),
+        getCategoryById: build.query({
+            query: (id) => ({
+                url: `${CATEGORY_URL}/${id}`,
+                method: "GET",
             }),
             providesTags: ["CATEGORY"]
         }),
@@ -31,5 +49,7 @@ export const categoryApi = baseApi.injectEndpoints({
 
 export const {
     useCreateCategoryMutation,
-    useGetAllCategoriesQuery
+    useGetAllCategoriesQuery,
+    useGetCategoryByIdQuery,
+    useUpdateCategoryMutation
 } = categoryApi
