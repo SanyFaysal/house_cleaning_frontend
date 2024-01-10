@@ -7,13 +7,12 @@ export default function ServiceCard({ service }: { service: IService }) {
     const router = useRouter()
     return (
         <div className="bg-gray-100  rounded-lg">
-            <img src={service?.image} className="rounded-t-lg" alt="" />
-            <div className="px-4 py-4">
-                <h5 className="text-xl h-12 font-bold tracking-tight mb-4 text-gray-900 dark:text-white">
+            <img src={service?.image} className="rounded-t-lg h-[25vh] w-full" alt="" />
+            <div className="px-4 py-4 ">
+                <h5 className="text-xl h-[8vh] font-bold tracking-tight mb-4 text-gray-900 dark:text-white">
                     {service?.serviceName}
                 </h5>
                 <p className="font-normal text-gray-700 dark:text-gray-400">
-
                 </p>
                 <button onClick={() => router.push(`service/service-details/${service?.id}`)} className="flex gap-2 items-center border px-4 py-2 rounded-lg">
                     Read more

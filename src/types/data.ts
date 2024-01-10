@@ -8,6 +8,7 @@ export type IService = {
     location?: string;
     warranty?: string;
     categoryId?: string;
+    category?: any;
     status?: string;
     cart?: any;
     review?: any;
