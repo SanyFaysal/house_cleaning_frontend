@@ -1,6 +1,6 @@
 import { authKey } from "@/constants/storageKey";
 import { formateDate, formateTime } from "@/helpers/formate_date_time";
-import { useCancelBookingMutation } from "@/redux/api/booking.api";
+import { useUpdateBookingStatusMutation } from "@/redux/api/booking.api";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { MoreOutlined } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps, message } from "antd";
@@ -8,7 +8,7 @@ import { Button, Dropdown, MenuProps, message } from "antd";
 
 export default function BookingCard({ booking }: { booking: any }) {
     const token = getFromLocalStorage(authKey);
-    const [cancelBooking] = useCancelBookingMutation()
+    const [cancelBooking] = useUpdateBookingStatusMutation()
     const handleCancelBooking = async () => {
         try {
             const data = {

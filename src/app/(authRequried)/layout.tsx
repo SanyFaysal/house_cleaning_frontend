@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Spin } from "antd";
+import LoadingComponent from "@/components/ui/Loading";
 
 export default function AuthRequired({ children }: { children: React.ReactNode | React.ReactElement }) {
     const dispatch = useAppDispatch() as any;
@@ -31,7 +32,7 @@ export default function AuthRequired({ children }: { children: React.ReactNode |
 
 
     if (isLoading) {
-        return <p className="text-center mt-5">Loading...</p>
+        return <LoadingComponent />
     }
 
     return (

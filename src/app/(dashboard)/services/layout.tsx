@@ -1,5 +1,6 @@
 'use client'
 
+import LoadingComponent from "@/components/ui/Loading";
 import { authKey } from "@/constants/storageKey";
 import { useAppSelector } from "@/redux/hook";
 import { getFromLocalStorage } from "@/utils/local-storage";
@@ -22,7 +23,7 @@ export default function layout({ children }: { children: React.ReactNode | React
 
     }, [user])
     if (isLoading) {
-        return <p>Loading...</p>
+        return <LoadingComponent />
     }
     return (
         <>{children}</>

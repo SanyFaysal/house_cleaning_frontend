@@ -10,6 +10,7 @@ import { dashboardSideItems } from '@/constants/dashboardSideItems';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { authKey } from '@/constants/storageKey';
 import { fetchUser } from '@/redux/slices/userSlice';
+import LoadingComponent from '@/components/ui/Loading';
 
 
 
@@ -35,7 +36,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode | React.React
         if (!token && !user?.id) { router.push('/signin') }
     }, [router, user])
     if (isLoading) {
-        return <p className="text-center mt-5">Loading...</p>
+        return <LoadingComponent />
     }
 
 

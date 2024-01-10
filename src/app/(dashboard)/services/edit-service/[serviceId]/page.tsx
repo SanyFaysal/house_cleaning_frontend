@@ -1,16 +1,15 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
     Button,
-    DatePicker,
+
     Form,
     Input,
     InputNumber,
     Select,
-    Upload,
-    UploadProps,
+
     message,
 } from 'antd';
 
@@ -22,25 +21,25 @@ import { useGetAllCategoriesQuery } from '@/redux/api/categoryApi';
 import { arrayReformed } from '@/helpers/category_table_array_reformed';
 import { getFromLocalStorage } from '@/utils/local-storage';
 import { authKey } from '@/constants/storageKey';
-import { useCreateServiceMutation } from '@/redux/api/serviceApi';
-import { InboxOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { useGetServiceByIdQuery, useUpdateServiceMutation } from '@/redux/api/serviceApi';
+import { useParams } from 'next/navigation';
+import LoadingComponent from '@/components/ui/Loading';
+import { IService } from '@/types/data';
 
-const { RangePicker } = DatePicker;
 const { TextArea } = Input;
-const props: UploadProps = {
-    name: 'file',
-    action: '/upload.do',
-    headers: {
-        authorization: 'authorization-text',
-    },
-}
 
-const AddService = () => {
+const EditService = () => {
+    const [service, setService] = useState<IService>()
+    const params = useParams()
+    const { data: response } = useGetServiceByIdQuery(params?.serviceId)
+    const serviceData = response?.data;
+
+
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
     const [image, setImage] = useState<any>()
     const { data } = useGetAllCategoriesQuery(undefined);
-    const [addService] = useCreateServiceMutation()
+    const [updateService] = useUpdateServiceMutation()
     const categories = data?.data;
     const reformedCategories = arrayReformed(categories, { label: "title", value: 'id' });
     const handleFileChange = (e: any) => {
@@ -49,29 +48,46 @@ const AddService = () => {
             setImage(getFile);
         }
     }
-    const handleAddService = async (values: any) => {
+    const handleEditService = async (values: any) => {
         try {
 
             const serviceData = {
                 ...values,
-                location: JSON.stringify(values.location),
-                serviceFeatures: JSON.stringify(values.serviceFeatures),
-                pricingTerms: JSON.stringify(values.pricingTerms ?? []),
+                location: JSON.stringify(values?.location ?? "[]"),
+                serviceFeatures: JSON.stringify(values?.serviceFeatures ?? "[]"),
+                pricingTerms: JSON.stringify(values?.pricingTerms ?? "[]"),
             }
+
             const formData = new FormData();
-            formData.append('image', image);
+            if (image) { formData.append('image', image) }
             formData.append('data', JSON.stringify(serviceData));
 
-
-            const res: any = await addService({ token, formData }).unwrap()
-
+            const res: any = await updateService({ id: params?.serviceId, token, formData }).unwrap()
             if (res?.status) {
-                message.success('Added Successful');
+                message.success('Updated Successful');
             }
         } catch (error: any) {
-            const errorMessage: any = error?.data?.message
+            console.log({ error })
+            const errorMessage: any = error?.error
             message.error(errorMessage)
         }
+    }
+
+
+    useEffect(() => {
+        if (serviceData) {
+            setService({
+                ...serviceData,
+                location: JSON.parse(serviceData?.location ?? "[]"),
+                serviceFeatures: JSON.parse(serviceData?.serviceFeatures ?? "[]"),
+                pricingTerms: JSON.parse(serviceData?.pricingTerms ?? "[]"),
+            }
+            )
+        }
+    }, [serviceData]);
+
+    if (!service) {
+        return <LoadingComponent />
     }
     return (
         <>
@@ -85,21 +101,22 @@ const AddService = () => {
             <Form
                 layout="vertical"
                 className='grid lg:grid-cols-3 w-full gap-x-5'
-                onFinish={handleAddService}
+                initialValues={service}
+                onFinish={handleEditService}
             >
 
-                <Form.Item rules={[{ required: true, message: 'Service name is required' }]} label="Service Name" name='serviceName'>
+                <Form.Item label="Service Name" name='serviceName'>
                     <Input />
                 </Form.Item>
-                <Form.Item rules={[{ required: true, message: 'Price is required' }]} label="Price" name='price'>
+                <Form.Item label="Price" name='price'>
                     <InputNumber style={{ width: '100%' }} />
                 </Form.Item>
-                <Form.Item rules={[{ required: true, message: 'Category is required' }]} label="Category" name='categoryId'>
+                <Form.Item label="Category" name='categoryId'>
                     <Select
                         options={reformedCategories}
                     />
                 </Form.Item>
-                <Form.Item label="Location" rules={[{ required: true, message: 'Location is required' }]} name='location'>
+                <Form.Item label="Location" name='location'>
                     <Select
                         mode="tags"
                         style={{ width: '100%', height: '100%' }}
@@ -107,7 +124,7 @@ const AddService = () => {
                     />
                 </Form.Item>
 
-                <Form.Item label="Service Features" rules={[{ required: true, message: 'Feature is required' }]} name='serviceFeatures'>
+                <Form.Item label="Service Features" name='serviceFeatures'>
                     <Select
                         mode="tags"
                         style={{ width: '100%', height: '100%' }}
@@ -122,7 +139,7 @@ const AddService = () => {
                         placeholder="Write a term and press enter"
                     />
                 </Form.Item>
-                <Form.Item rules={[{ required: true, message: 'Service Details is required' }]} label="Service Details" name='serviceDetails' className='col-span-2'>
+                <Form.Item label="Service Details" name='serviceDetails' className='col-span-2'>
                     <TextArea rows={3} />
                 </Form.Item>
                 <Form.Item
@@ -130,12 +147,13 @@ const AddService = () => {
                     label="Upload"
 
                 >
-                    <input type="file" required onChange={handleFileChange} id="" />
-
+                    <input type="file" onChange={handleFileChange} id="" />
+                    <p>Service image</p>
+                    <img src={service?.image} className='mt-1 w-40' />
                 </Form.Item>
-                <div className='col-span-3 w-full flex justify-end items-end h-full'>
+                <div className='w-full flex justify-end items-end h-full col-span-3'>
                     <Button type="primary" htmlType="submit">
-                        Add Service
+                        Update Service
                     </Button>
                 </div>
 
@@ -144,30 +162,4 @@ const AddService = () => {
     );
 };
 
-export default AddService
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default EditService

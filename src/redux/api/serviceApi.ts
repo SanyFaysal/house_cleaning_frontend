@@ -16,6 +16,17 @@ export const serviceApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["SERVICES"]
         }),
+        updateService: build.mutation({
+            query: ({ id, token, formData }) => ({
+                url: `${SERVICE_URL}/${id}`,
+                method: "PATCH",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+                body: formData
+            }),
+            invalidatesTags: ["SERVICES", "SERVICE"]
+        }),
         getAllService: build.query({
             query: () => ({
                 url: `${SERVICE_URL}/all`,
@@ -51,5 +62,6 @@ export const {
     useGetAllServiceQuery,
     useCreateServiceMutation,
     useGetServiceByIdQuery,
-    useDeleteServiceMutation
+    useDeleteServiceMutation,
+    useUpdateServiceMutation
 } = serviceApi

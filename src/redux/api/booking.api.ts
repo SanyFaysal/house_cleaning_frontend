@@ -1,3 +1,4 @@
+import { objectToQueryString } from "@/helpers/objectToQueryString";
 import { baseApi } from "./baseApi"
 
 
@@ -17,16 +18,19 @@ export const bookingApi = baseApi.injectEndpoints({
             invalidatesTags: ["BOOKING", "SERVICE"]
         }),
         getAllBooking: build.query({
-            query: (token) => ({
-                url: `${BOOKING_URL}/`,
-                method: "GET",
-                headers: {
-                    authorization: `Bearer ${token}`,
-                },
-            }),
+            query: ({ token, query }) => {
+                const queryString = objectToQueryString(query);
+                return ({
+                    url: `${BOOKING_URL}?${queryString}`,
+                    method: "GET",
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                })
+            },
             providesTags: ["BOOKING"]
         }),
-        cancelBooking: build.mutation({
+        updateBookingStatus: build.mutation({
             query: ({ id, token, data }) => ({
                 url: `${BOOKING_URL}/${id}`,
                 method: "PATCH",
@@ -45,5 +49,5 @@ export const bookingApi = baseApi.injectEndpoints({
 export const {
     useAddBookingMutation,
     useGetAllBookingQuery,
-    useCancelBookingMutation
+    useUpdateBookingStatusMutation
 } = bookingApi
