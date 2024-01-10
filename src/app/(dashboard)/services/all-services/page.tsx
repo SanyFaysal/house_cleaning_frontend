@@ -92,6 +92,8 @@ export default function AllServices() {
                     },
                 ]
             }>
+
+
                 <Link href={'/services/ add - service'}>  <Button>Add Service</Button></Link>
             </CommonPageTitle >
             <Table columns={columns} bordered dataSource={data?.data} pagination={{ pageSize: 10 }} />

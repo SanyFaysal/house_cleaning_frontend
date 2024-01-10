@@ -52,7 +52,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode | React.React
                 </div>
             </Sider>
             <Layout>
-                <Header style={{ padding: "0 20px" }} className=' flex gap-5 items-center justify-end '>
+                <Header style={{ padding: "0 20px", background: "white" }} className=' flex gap-5 items-center justify-end '>
 
                     <p className='text-xl'>    <BellOutlined /></p>
                     <p className='text-xl border rounded-full px-1'>    <UserOutlined /></p>

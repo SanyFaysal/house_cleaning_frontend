@@ -17,7 +17,7 @@ export const categoryApi = baseApi.injectEndpoints({
             invalidatesTags: ["CATEGORY"]
         }),
         getAllCategories: build.query({
-            query: () => ({
+            query: (token) => ({
                 url: `${CATEGORY_URL}/all`,
                 method: "GET",
 

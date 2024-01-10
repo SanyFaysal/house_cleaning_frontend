@@ -6,13 +6,13 @@ const SERVICE_URL = "/service";
 export const serviceApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         createService: build.mutation({
-            query: ({ token, data }) => ({
+            query: ({ token, formData }) => ({
                 url: `${SERVICE_URL}`,
                 method: "POST",
                 headers: {
                     authorization: `Bearer ${token}`,
                 },
-                body: data
+                body: formData
             }),
             invalidatesTags: ["SERVICES"]
         }),

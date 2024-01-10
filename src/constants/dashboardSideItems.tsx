@@ -108,7 +108,7 @@ export const dashboardSideItems = (role: string | any) => {
             },
             {
                 key: 'booking',
-                label: <Link href={'/bookings'}>All Bookings</Link>,
+                label: <Link href={'/services/all-bookings'}>All Bookings</Link>,
                 icon: <BookOutlined />,
             },
             {

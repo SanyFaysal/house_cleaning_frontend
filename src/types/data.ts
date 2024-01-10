@@ -13,5 +13,18 @@ export type IService = {
     review?: any;
     booking?: any;
     schedule?: any;
+    image?: string;
 
+}
+
+export interface IUser {
+    id?: string,
+    fullName?: string,
+    email?: string,
+    phoneNumber?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    cart?: any;
+    review?: any;
+    role?: string
 }

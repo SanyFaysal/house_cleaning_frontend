@@ -17,10 +17,12 @@ export const bookingApi = baseApi.injectEndpoints({
             invalidatesTags: ["BOOKING", "SERVICE"]
         }),
         getAllBooking: build.query({
-            query: () => ({
-                url: `${BOOKING_URL}/all`,
+            query: (token) => ({
+                url: `${BOOKING_URL}/`,
                 method: "GET",
-
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
             }),
             providesTags: ["BOOKING"]
         }),

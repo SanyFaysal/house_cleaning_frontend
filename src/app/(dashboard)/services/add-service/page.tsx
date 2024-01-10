@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     Button,
@@ -9,6 +9,8 @@ import {
     Input,
     InputNumber,
     Select,
+    Upload,
+    UploadProps,
     message,
 } from 'antd';
 
@@ -21,36 +23,48 @@ import { arrayReformed } from '@/helpers/category_table_array_reformed';
 import { getFromLocalStorage } from '@/utils/local-storage';
 import { authKey } from '@/constants/storageKey';
 import { useCreateServiceMutation } from '@/redux/api/serviceApi';
+import { InboxOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
-
-const normFile = (e: any) => {
-    if (Array.isArray(e)) {
-        return e;
-    }
-    return e?.fileList;
-};
+const props: UploadProps = {
+    name: 'file',
+    action: '/upload.do',
+    headers: {
+        authorization: 'authorization-text',
+    },
+}
 
 const AddService = () => {
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
+    const [image, setImage] = useState<any>()
     const { data } = useGetAllCategoriesQuery(undefined);
     const [addService] = useCreateServiceMutation()
     const categories = data?.data;
     const reformedCategories = arrayReformed(categories, { label: "title", value: 'id' });
-
-
+    const handleFileChange = (e: any) => {
+        const getFile = e.target.files[0];
+        if (getFile) {
+            setImage(getFile);
+        }
+    }
     const handleAddService = async (values: any) => {
         try {
-            const data = {
+
+            const serviceData = {
                 ...values,
                 location: JSON.stringify(values.location),
                 serviceFeatures: JSON.stringify(values.serviceFeatures),
                 pricingTerms: JSON.stringify(values.pricingTerms ?? []),
             }
-            const res: any = await addService({ token, data }).unwrap()
-            console.log(res)
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('data', JSON.stringify(serviceData));
+
+
+            const res: any = await addService({ token, formData }).unwrap()
+
             if (res?.status) {
                 message.success('Added Successful');
             }
@@ -111,7 +125,14 @@ const AddService = () => {
                 <Form.Item rules={[{ required: true, message: 'Service Details is required' }]} label="Service Details" name='serviceDetails' className='col-span-2'>
                     <TextArea rows={3} />
                 </Form.Item>
+                <Form.Item
 
+                    label="Upload"
+
+                >
+                    <input type="file" required onChange={handleFileChange} id="" />
+
+                </Form.Item>
                 <div className='w-full flex justify-end items-end h-full'>
                     <Button type="primary" htmlType="submit">
                         Add Service
@@ -124,3 +145,29 @@ const AddService = () => {
 };
 
 export default AddService
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

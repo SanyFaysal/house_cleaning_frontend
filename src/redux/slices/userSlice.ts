@@ -1,18 +1,9 @@
 import { getBaseUrl } from '@/helpers/config/envConfig';
+import { IUser } from '@/types/data';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-export interface IUser {
-    id?: string,
-    fullName?: string,
-    email?: string,
-    phoneNumber?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    cart?: any;
-    review?: any;
-    role?: string
-}
+
 type InitialStateType = {
     isLoading: boolean,
     isSuccess: boolean,

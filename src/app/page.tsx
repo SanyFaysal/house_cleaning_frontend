@@ -15,7 +15,7 @@ export default function Home() {
     <PageLayout>
       <>
         <h1 className="text-xl mb-4">Recent Services</h1>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-4 gap-5">
           {services?.map((service: IService) => <ServiceCard service={service} key={service?.id} />)}
         </div>
       </>
