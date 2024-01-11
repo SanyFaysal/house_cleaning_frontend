@@ -43,6 +43,16 @@ export const serviceApi = baseApi.injectEndpoints({
             }),
             providesTags: ["SERVICE"]
         }),
+        getAvailableServiceForReview: build.query({
+            query: (token) => ({
+                url: `${SERVICE_URL}/availableForReview`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            }),
+            providesTags: ["SERVICE"]
+        }),
         deleteService: build.mutation({
             query: ({ id, token }) => ({
                 url: `${SERVICE_URL}/${id}`,
@@ -50,6 +60,17 @@ export const serviceApi = baseApi.injectEndpoints({
                 headers: {
                     authorization: `Bearer ${token}`,
                 },
+            }),
+            invalidatesTags: ["SERVICES", "SERVICE"]
+        }),
+        addReview: build.mutation({
+            query: ({ token, data }) => ({
+                url: `/review`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+                body: data
             }),
             invalidatesTags: ["SERVICES", "SERVICE"]
         }),
@@ -63,5 +84,7 @@ export const {
     useCreateServiceMutation,
     useGetServiceByIdQuery,
     useDeleteServiceMutation,
-    useUpdateServiceMutation
+    useUpdateServiceMutation,
+    useGetAvailableServiceForReviewQuery,
+    useAddReviewMutation
 } = serviceApi

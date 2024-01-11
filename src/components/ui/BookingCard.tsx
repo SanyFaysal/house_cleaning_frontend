@@ -1,23 +1,18 @@
 import { authKey } from "@/constants/storageKey";
 import { formateDate, formateTime } from "@/helpers/formate_date_time";
-import { useUpdateBookingStatusMutation } from "@/redux/api/booking.api";
+import { useCancelBookingMutation } from "@/redux/api/booking.api";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { MoreOutlined } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps, message } from "antd";
-
+import { useState } from "react";
 
 export default function BookingCard({ booking }: { booking: any }) {
     const token = getFromLocalStorage(authKey);
-    const [cancelBooking] = useUpdateBookingStatusMutation()
+
+    const [cancelBooking] = useCancelBookingMutation()
     const handleCancelBooking = async () => {
         try {
-            const data = {
-                status: 'CANCELLED'
-            }
-            if (booking?.status === 'CANCELLED') {
-                return message.error('Already cancelled')
-            }
-            const res: any = await cancelBooking({ id: booking?.id, token, data }).unwrap()
+            const res: any = await cancelBooking({ id: booking?.id, token }).unwrap()
             if (res.status) {
                 message.success(res.message)
             }
@@ -56,16 +51,16 @@ export default function BookingCard({ booking }: { booking: any }) {
                     <p>
 
                         <span className={`border   rounded-full px-2
-                         ${booking?.status === 'CANCELLED' ?
-                                'border-red-500 text-red-500'
-                                : booking?.status === 'PENDING' ? "" : "border-sky-500 text-sky-500"} `}>{booking?.status}</span>
+                         ${booking?.status === 'PENDING' ?
+                                'border-yellow-500 text-yellow-500'
+                                : booking?.status === 'CONFIRMED' ? "border-sky-400 text-sky-400" : "border-green-500 text-green-500"} `}>{booking?.status}</span>
                     </p>
-                    <div>
+                    {booking?.status === 'PENDING' && <div>
                         <Dropdown menu={{ items }}
                             trigger={['click']} placement="bottomRight">
                             <MoreOutlined className="text-xl" />
                         </Dropdown>
-                    </div>
+                    </div>}
                 </div>
             </div>
 
@@ -76,48 +71,12 @@ export default function BookingCard({ booking }: { booking: any }) {
 
                 </p>
             </div>
-            <div>
-                <h1 className="font-semibold text-lg">User Contact</h1>
-                <div className="flex gap-5">
-                    <div>
-                        <h1 className="font-semibold">Name</h1>
-                        <h1>{booking?.fullName}</h1>
-                    </div>
-                    <div>
-                        <h1 className="font-semibold">Email</h1>
-                        <h1>{booking?.email}</h1>
-                    </div>
-                    <div>
-                        <h1 className="font-semibold">Phone Number</h1>
-                        <h1>{booking?.phoneNumber}</h1>
-                    </div>
 
-                </div>
-            </div>
-            <div>
-                <h1 className="font-semibold text-lg">Address</h1>
-                <div className="flex gap-5">
-                    <div>
-                        <h1 className="font-semibold">Area</h1>
-                        <h1>{booking?.area}</h1>
-                    </div>
-                    <div>
-                        <h1 className="font-semibold">Sector No.</h1>
-                        <h1>{booking?.sectorNo}</h1>
-                    </div>
-                    <div>
-                        <h1 className="font-semibold">Road No.</h1>
-                        <h1>{booking?.roadNo}</h1>
-                    </div>
-                    <div>
-                        <h1 className="font-semibold">Block No.</h1>
-                        <h1>{booking?.blockNo}</h1>
-                    </div>
+            <div className="flex justify-between mt-2 items-center">
+                <p className=" text-lg">
+                    TK:   {booking?.service?.price} </p>
 
-                </div>
             </div>
-            <p className="mt-2 text-lg">
-                TK:   {booking?.service?.price} </p>
 
         </div >
     )

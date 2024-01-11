@@ -56,7 +56,7 @@ export default function ScheduleManagementForm({
                         reformedSchedule?.map((schedule: any, index: number) => (<div key={index}>
                             <button onClick={() => handleSelectScheduleDate(schedule)} className="flex gap-4 mb-5">
                                 <span className={`bg-white p-4 text-2xl w-28 border  rounded
-                                ${getBookingData?.date?.date === schedule?.date && "text-white  bg-sky-400"}`}> {formateDate(schedule?.date)}</span>
+                                ${getBookingData?.date?.date === schedule?.date && "text-white  bg-orange-400"}`}> {formateDate(schedule?.date)}</span>
                             </button>
                         </div>)
 
@@ -76,7 +76,7 @@ export default function ScheduleManagementForm({
                                     key={index}
                                     className={`bg-white p-3 rounded  border 
                                       ${scheduleTime?.booking ? 'text-gray-200' : ''}
-                                      ${getBookingData?.id === scheduleTime?.id ? 'text-white bg-sky-400' : ''}
+                                      ${getBookingData?.id === scheduleTime?.id ? 'text-white bg-orange-400' : ''}
                                       `}
                                 >
                                     {formateTime(scheduleTime?.startTime)} <br /><hr />

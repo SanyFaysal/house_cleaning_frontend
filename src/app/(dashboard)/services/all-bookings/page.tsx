@@ -3,7 +3,7 @@
 import CommonPageTitle from "@/components/ui/CommonPageTitle";
 import { authKey } from "@/constants/storageKey";
 import { formateDate, formateDateWithYear } from "@/helpers/formate_date_time";
-import { useGetAllBookingQuery, useUpdateBookingStatusMutation } from "@/redux/api/booking.api"
+import { useCancelBookingMutation, useGetAllBookingQuery, useUpdateBookingStatusMutation } from "@/redux/api/booking.api"
 import { useAppSelector } from "@/redux/hook";
 
 import { IService } from "@/types/data";
@@ -19,6 +19,7 @@ export default function AllBookings() {
     const { user } = useAppSelector(state => state.auth);
     const { data } = useGetAllBookingQuery({ token, query });
     const [updateBooking] = useUpdateBookingStatusMutation();
+    const [cancelBooking] = useCancelBookingMutation();
     const bookings = data?.data;
 
 
@@ -30,6 +31,18 @@ export default function AllBookings() {
             const res: any = await updateBooking({ id, data, token });
             if (res.status) {
                 message.success('Successful')
+            }
+        } catch (error: any) {
+            message.success(error?.data?.message)
+        }
+
+    }
+    const handleCancelBooking = async (id: string) => {
+        try {
+
+            const res: any = await updateBooking({ id, token });
+            if (res.status) {
+                message.success('Cancelled Success')
             }
         } catch (error: any) {
             message.success(error?.data?.message)
@@ -99,12 +112,12 @@ export default function AllBookings() {
                     booking?.status === 'PENDING' ?
                         <>
 
-                            <button onClick={() => handleUpdateBooking(booking.id, 'CANCELLED')} className="px-2 py-1 border rounded-lg  text-red-500 border-red-200 bg-red-100">Cancel</button>
-                            <button onClick={() => handleUpdateBooking(booking.id, 'CONFIRMED')} className="px-2 py-1 border rounded-lg  text-green-500 bg-green-100 border-green-200">CONFIRM</button>
+                            <button onClick={() => handleCancelBooking(booking.id)} className="px-2 py-1 border rounded-lg  text-red-500 border-red-200 bg-red-100 hover:bg-red-500 hover:text-white">Cancel</button>
+                            <button onClick={() => handleUpdateBooking(booking.id, 'CONFIRMED')} className="px-2 py-1 border rounded-lg  text-sky-500 bg-sky-50 hover:bg-sky-500 hover:text-white border-green-200">CONFIRM</button>
                         </> :
                         booking?.status === 'CONFIRMED' ?
                             <>
-                                <button onClick={() => handleUpdateBooking(booking.id, 'DELIVERED')} className="px-2 py-1 border rounded-lg  hover:border-gray-200">Delivered</button>
+                                <button onClick={() => handleUpdateBooking(booking.id, 'DELIVERED')} className="px-2 py-1  rounded-lg border border-green-300  hover:bg-green-500 hover:text-white bg-green-50 text-green-500 ">Delivered</button>
 
                             </> :
                             booking?.status === 'DELIVERED' ?
@@ -112,7 +125,9 @@ export default function AllBookings() {
                                     <button className="px-2 py-1 border rounded-lg text-gray-200 hover:border-gray-200">Delivered</button>
 
                                 </> :
-                                <></>
+                                <>
+
+                                </>
                 }
             </div>
 
@@ -129,7 +144,7 @@ export default function AllBookings() {
                 ]
             }>
                 <button onClick={() => setQuery({})} className={` p-3 py-2 mt-5 rounded  mr-3 border ${!query.status ? 'bg-black text-white' : ""} `} >All</button>
-                <button onClick={() => setQuery({ status: 'CANCELLED' })} className={` px-3 py-2 mt-5 rounded  text  mr-3 border  ${query?.status === 'CANCELLED' ? 'bg-red-500 text-white' : "bg-red-100 text-red-500"}`}>Cancelled</button>
+
                 <button onClick={() => setQuery({ status: 'PENDING' })} className={`   px-3 py-2  mt-5 rounded   ${query?.status === 'PENDING' ? 'bg-yellow-500 text-white' : 'bg-orange-100 text-orange-500'}`}>Pending</button>
                 <button onClick={() => setQuery({ status: 'CONFIRMED' })} className={` px-3 py-2  mt-5 rounded  mx-3 ${query?.status === 'CONFIRMED' ? 'bg-sky-500 text-white' : "bg-sky-100 text-sky-500"}`}>Confirmed</button>
                 <button onClick={() => setQuery({ status: 'DELIVERED' })} className={` px-3 py-2  mt-5 rounded  ${query?.status === 'DELIVERED' ? 'bg-green-500 text-white' : 'bg-green-100 text-green-500'}`}>Delivered</button>

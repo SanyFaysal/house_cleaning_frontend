@@ -2,7 +2,8 @@
 'use client'
 
 import PageLayout from "@/components/layout/PageLayout"
-import Review from "@/components/service_details_component/Review"
+import ReviewsAndComments from "@/components/service_details_component/ReviewsAndComments"
+
 import ServiceDetailsBanner from "@/components/service_details_component/ServiceDetailsBanner"
 import { useGetServiceByIdQuery } from "@/redux/api/serviceApi"
 
@@ -49,7 +50,7 @@ export default function ServiceDetails() {
                 }
 
                 <div>
-                    <Review />
+                    <ReviewsAndComments service={service} />
                 </div>
             </div>
         </PageLayout>
