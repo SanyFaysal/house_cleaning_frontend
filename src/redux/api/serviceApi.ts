@@ -74,6 +74,17 @@ export const serviceApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["SERVICES", "SERVICE"]
         }),
+        addSchedule: build.mutation({
+            query: ({ token, data }) => ({
+                url: `/schedule`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+                body: data
+            }),
+            invalidatesTags: ["SERVICES", "SERVICE"]
+        }),
 
     }),
 
@@ -86,5 +97,6 @@ export const {
     useDeleteServiceMutation,
     useUpdateServiceMutation,
     useGetAvailableServiceForReviewQuery,
-    useAddReviewMutation
+    useAddReviewMutation,
+    useAddScheduleMutation
 } = serviceApi

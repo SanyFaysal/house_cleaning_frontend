@@ -9,6 +9,7 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Table, message } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { MdMoreTime } from "react-icons/md";
 
 
 export default function AllServices() {
@@ -54,6 +55,8 @@ export default function AllServices() {
             dataIndex: 'action',
             width: 150,
             render: (_: any, record: any) => <div className="flex gap-2">
+                <button onClick={() => router.push(`/services/add-schedule/${record?.id}`)} className="px-2 py-1  border rounded-lg hover:bg-blue-500 hover:text-white"><MdMoreTime />
+                </button>
                 <button className="px-2 py-1  border rounded-lg hover:bg-blue-500 hover:text-white"><EyeOutlined /></button>
                 <button onClick={() => router.push(`/services/edit-service/${record?.id}`)} className="px-2 py-1 border rounded-lg hover:bg-sky-500 hover:text-white"><EditOutlined /></button>
                 <button onClick={() => handleDeleteService(record)} className="px-2 py-1 border rounded-lg hover:bg-red-500 hover:text-white"><DeleteOutlined /></button>
