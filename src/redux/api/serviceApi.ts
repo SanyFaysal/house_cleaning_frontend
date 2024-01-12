@@ -98,6 +98,13 @@ export const serviceApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["COMMENT"]
         }),
+        getServiceComments: build.query({
+            query: (serviceId) => ({
+                url: `/service/comment/${serviceId}`,
+                method: "GET",
+            }),
+            providesTags: ["COMMENT"]
+        }),
     }),
 
 })
@@ -111,5 +118,6 @@ export const {
     useGetAvailableServiceForReviewQuery,
     useAddReviewMutation,
     useAddScheduleMutation,
-    useAddCommentMutation
+    useAddCommentMutation,
+    useGetServiceCommentsQuery
 } = serviceApi
