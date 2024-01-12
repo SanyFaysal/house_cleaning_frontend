@@ -25,7 +25,7 @@ export default function ServiceDetails() {
                 <ServiceDetailsBanner service={service} />
 
                 <div>
-                    <h2 className="text-3xl font-bold my-5 ">Available Locations</h2>
+                    <h2 className="text-2xl font-bold my-5 ">Available Locations</h2>
                     <div className="flex items-center gap-5">
                         {JSON.parse(service?.location ?? "[]")?.map((location: string) =>
                             <div
@@ -34,16 +34,16 @@ export default function ServiceDetails() {
                             </div>)}</div>
                 </div>
                 <div>
-                    <h2 className="text-3xl font-bold my-5">Details</h2>
+                    <h2 className="text-2xl font-bold my-5">Details</h2>
                     <p className="">{service?.serviceDetails}</p>
-                    <h2 className="text-3xl font-bold my-5">Service Features</h2>
+                    <h2 className="text-2xl font-bold my-5">Service Features</h2>
                     <p className="ml-4 ">{JSON.parse(service?.serviceFeatures ?? "[]")?.map((feature: string) => <p className="mb-2"><GoDot className='inline mr-2' />
                         {feature}</p>)}</p>
                 </div>
 
 
                 {service?.pricingTerms?.length > 2 && <div className="mb-4">
-                    <h2 className="text-3xl font-bold my-5">Pricing Terms</h2>
+                    <h2 className="text-2xl font-bold my-5">Pricing Terms</h2>
                     <p className="ml-4 ">{JSON.parse(service?.pricingTerms ?? "[]")?.map((terms: string) => <p className="mb-2"><GoDot className='inline mr-2' />
                         {terms}</p>)}</p>
                 </div>

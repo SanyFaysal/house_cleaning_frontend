@@ -46,15 +46,13 @@ export default function Comments({ serviceId }: { serviceId: any }) {
         <div className=" mb-10">
             <h1 className="text-xl">All comments</h1>
             <p className="text-md">Total comments : {comments?.length}</p>
-
-            <div className="grid grid-cols-1 gap-5 my-5">
-                {comments?.map((comment: any) => <CommentCard key={comment?.id} comment={comment} />)}
-            </div>
             <div className="flex gap-4">
                 <input value={comment} onChange={(e) => setComment(e.target.value)} className="border py-2 px-3 w-1/2 rounded" />
                 <button onClick={handleAddComment} className="px-3 py-2 border rounded bg-blue-500 text-white">Comment</button>
             </div>
-
+            <div className="grid grid-cols-1 gap-5 my-5">
+                {comments?.map((comment: any) => <CommentCard key={comment?.id} comment={comment} />)}
+            </div>
 
         </div>
     )

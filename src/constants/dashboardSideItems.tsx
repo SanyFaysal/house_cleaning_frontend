@@ -7,6 +7,7 @@ import {
     BiCategory, BiCustomize
 } from 'react-icons/bi'
 import {
+    MdAddComment,
     MdFormatListBulletedAdd
 } from 'react-icons/md'
 export const dashboardSideItems = (role: string | any) => {
@@ -29,8 +30,8 @@ export const dashboardSideItems = (role: string | any) => {
             },
             {
                 key: 'profile ',
-                label: <Link href={'/dashboard'}>History </Link>,
-                icon: <HistoryOutlined />
+                label: <Link href={'/user/add-review'}>Add Review </Link>,
+                icon: <MdAddComment />
             },
 
         ]

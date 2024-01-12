@@ -105,6 +105,18 @@ export const serviceApi = baseApi.injectEndpoints({
             }),
             providesTags: ["COMMENT"]
         }),
+
+        makeReply: build.mutation({
+            query: ({ token, data }) => ({
+                url: `/service/reply`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+                body: data
+            }),
+            invalidatesTags: ["COMMENT"]
+        }),
     }),
 
 })
@@ -119,5 +131,6 @@ export const {
     useAddReviewMutation,
     useAddScheduleMutation,
     useAddCommentMutation,
-    useGetServiceCommentsQuery
+    useGetServiceCommentsQuery,
+    useMakeReplyMutation
 } = serviceApi
