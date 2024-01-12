@@ -22,18 +22,15 @@ export default function ReviewsAndComments
         {
             key: 2,
             label: <p className="flex ">
-                <AiOutlineComment
-
-                    className='text-xl mr-1' />
+                <AiOutlineComment className='text-xl mr-1' />
                 Comments</p>,
-            children: <Comments />
+            children: <Comments serviceId={service?.id} />
         },
 
 
     ]
     return (
         <Tabs
-
             defaultActiveKey="2"
             items={items}
         />

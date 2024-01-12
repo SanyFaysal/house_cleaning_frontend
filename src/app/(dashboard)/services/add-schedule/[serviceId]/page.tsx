@@ -47,7 +47,6 @@ export default function page() {
 
     };
     return (<div>
-
         <CommonPageTitle title='Add Schedule ' items={
             [
                 { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },

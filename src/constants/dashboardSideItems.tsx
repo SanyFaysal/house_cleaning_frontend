@@ -97,7 +97,6 @@ export const dashboardSideItems = (role: string | any) => {
 
                     },
 
-
                     {
                         key: 'add_category',
                         label: <Link href={'/services/add-category'}>Add Category</Link>,

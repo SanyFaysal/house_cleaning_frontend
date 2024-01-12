@@ -63,17 +63,6 @@ export const serviceApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["SERVICES", "SERVICE"]
         }),
-        addReview: build.mutation({
-            query: ({ token, data }) => ({
-                url: `/review`,
-                method: "POST",
-                headers: {
-                    authorization: `Bearer ${token}`,
-                },
-                body: data
-            }),
-            invalidatesTags: ["SERVICES", "SERVICE"]
-        }),
         addSchedule: build.mutation({
             query: ({ token, data }) => ({
                 url: `/schedule`,
@@ -86,6 +75,29 @@ export const serviceApi = baseApi.injectEndpoints({
             invalidatesTags: ["SERVICES", "SERVICE"]
         }),
 
+
+        addReview: build.mutation({
+            query: ({ token, data }) => ({
+                url: `/review`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+                body: data
+            }),
+            invalidatesTags: ["SERVICES", "SERVICE"]
+        }),
+        addComment: build.mutation({
+            query: ({ token, data }) => ({
+                url: `/service/comment`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+                body: data
+            }),
+            invalidatesTags: ["COMMENT"]
+        }),
     }),
 
 })
@@ -98,5 +110,6 @@ export const {
     useUpdateServiceMutation,
     useGetAvailableServiceForReviewQuery,
     useAddReviewMutation,
-    useAddScheduleMutation
+    useAddScheduleMutation,
+    useAddCommentMutation
 } = serviceApi
