@@ -31,6 +31,7 @@ export default function ReviewsAndComments
     ]
     return (
         <Tabs
+            type="card"
             defaultActiveKey="2"
             items={items}
         />

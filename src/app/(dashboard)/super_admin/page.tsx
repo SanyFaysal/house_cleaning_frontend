@@ -1,6 +1,7 @@
+import Profile from "@/components/profile_component/Profile";
 
 export default function page() {
     return (
-        <div>This is super admin page</div>
+        <div><Profile /></div>
     )
 }

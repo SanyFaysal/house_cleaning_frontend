@@ -4,6 +4,7 @@ import CommonPageTitle from "@/components/ui/CommonPageTitle";
 import { authKey } from "@/constants/storageKey";
 import { useDeleteServiceMutation, useGetAllServiceQuery } from "@/redux/api/serviceApi"
 import { useAppSelector } from "@/redux/hook";
+import { IService } from "@/types/data";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Table, message } from "antd";
@@ -19,8 +20,12 @@ export default function AllServices() {
     const columns = [
         {
             title: 'Name',
-            dataIndex: 'serviceName',
-            width: 150,
+            dataIndex: '',
+            render: (service: IService) => <div className="flex gap-2">
+                <img src={service?.image} className="w-11 h-11 rounded-lg" />
+                <p>{service?.serviceName}</p>
+            </div>,
+            width: 200,
         },
         {
             title: 'Price (TK)',

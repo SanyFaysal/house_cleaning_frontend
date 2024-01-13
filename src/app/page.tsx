@@ -13,12 +13,12 @@ export default function Home() {
   const services = data?.data;
   return (
     <PageLayout>
-      <>
-        <h1 className="text-xl mb-4">Recent Services</h1>
-        <div className="grid grid-cols-4 gap-5 mb-10">
+      <div>
+        <h1 className="text-5xl mb-4">Recent Services</h1>
+        <div className="grid lg:grid-cols-5 gap-5 mb-10">
           {services?.map((service: IService) => <ServiceCard service={service} key={service?.id} />)}
         </div>
-      </>
+      </div>
     </PageLayout>
   )
 }
