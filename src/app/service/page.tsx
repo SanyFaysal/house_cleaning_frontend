@@ -8,31 +8,62 @@ import { useEffect, useState } from "react";
 
 
 export default function ServiceDetails() {
-
-    const { data } = useGetAllServiceQuery(undefined);
-
+    const [category, setCategory] = useState<Record<string, any>>()
+    const [query, setQuery] = useState<any>();
+    const { data } = useGetAllServiceQuery(query);
+    const services = data?.data;
     const { data: categoryData } = useGetAllCategoriesQuery(undefined);
     const categories = categoryData?.data;
-    const [category, setCategory] = useState<Record<string, any>>();
 
-
+    console.log(category)
+    const handleSetCategory = (category: any) => {
+        if (Object.keys(category)?.length) {
+            console.log({ come: true })
+            setQuery({ category: category?.title && category?.title })
+            setCategory(category)
+        } else {
+            setCategory({})
+            setQuery({})
+        }
+    }
     return (
         <PageLayout>
-            <div className="relative">
-                <h3 className="text-3xl">All Service</h3>
-                <div className=" min-h-[71vh] grid grid-cols-6  mt-4">
-                    <div className="sticky top-10 flex flex-col gap-5   col-span-1 mt-5 pr-8 border-r">
-                        {categories?.map((category: any) => <p
-                            className="text-semibold hover:translate-x-1 hover:text-blue-500
-                     hover:duration-300 hover:cursor-pointer" key={category?.id}
-                            onClick={() => setCategory(category)}>{category?.title}</p>)}
+            <div className="">
+
+                <div className="mt-4 h-full grid grid-cols-6">
+                    <div className="sticky h-[80vh] border-r flex flex-col gap-5 top-10 col-span-1">
+                        <h3 className="text-3xl ">All Service</h3>
+
+                        <div
+                            className={`
+                                text-semibold hover:translate-x-1
+                                 hover:text-blue-500
+                                      hover:duration-300
+                                       hover:cursor-pointer 
+                                       ${!query?.category ?
+                                    'text-blue-400 border-r-2 font-semibold border-r-blue-500 pr-8' : ''}`} key={category?.id}
+                            onClick={() => handleSetCategory({})} >
+                            <span>All </span>
+                        </div>
+                        {categories?.map((category: any) =>
+                            <div
+                                className={`
+                                text-semibold 
+                                 hover:text-blue-500
+                                      
+                                       hover:cursor-pointer 
+                                       ${query?.category === category?.title ?
+                                        'text-blue-400 border-r-2 font-semibold border-r-blue-500 pr-8' : ''}`} key={category?.id}
+                                onClick={() => handleSetCategory(category)} >
+                                <span>{category?.title}</span>
+                            </div>)}
                     </div>
-                    <div className="col-span-5 gap-5  ">
-                        <CategoryServices category={category} />
+                    <div className=" gap-5    col-span-5">
+                        <CategoryServices services={services} category={category} />
                     </div>
                 </div>
 
             </div>
-        </PageLayout>
+        </PageLayout >
     )
 }

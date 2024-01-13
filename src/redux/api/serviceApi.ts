@@ -1,3 +1,4 @@
+import { objectToQueryString } from "@/helpers/objectToQueryString";
 import { baseApi } from "./baseApi"
 
 
@@ -28,11 +29,14 @@ export const serviceApi = baseApi.injectEndpoints({
             invalidatesTags: ["SERVICES", "SERVICE"]
         }),
         getAllService: build.query({
-            query: () => ({
-                url: `${SERVICE_URL}/all`,
-                method: "GET",
+            query: (query) => {
+                const queryString = objectToQueryString(query)
+                return ({
+                    url: `${SERVICE_URL}/all?${queryString}`,
+                    method: "GET",
 
-            }),
+                })
+            },
             providesTags: ["SERVICES"]
         }),
         getServiceById: build.query({
