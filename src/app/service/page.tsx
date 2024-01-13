@@ -36,9 +36,7 @@ export default function ServiceDetails() {
 
                         <div
                             className={`
-                                text-semibold hover:translate-x-1
-                                 hover:text-blue-500
-                                      hover:duration-300
+                                text-semibold 
                                        hover:cursor-pointer 
                                        ${!query?.category ?
                                     'text-blue-400 border-r-2 font-semibold border-r-blue-500 pr-8' : ''}`} key={category?.id}
@@ -49,8 +47,6 @@ export default function ServiceDetails() {
                             <div
                                 className={`
                                 text-semibold 
-                                 hover:text-blue-500
-                                      
                                        hover:cursor-pointer 
                                        ${query?.category === category?.title ?
                                         'text-blue-400 border-r-2 font-semibold border-r-blue-500 pr-8' : ''}`} key={category?.id}
@@ -59,7 +55,7 @@ export default function ServiceDetails() {
                             </div>)}
                     </div>
                     <div className=" gap-5    col-span-5">
-                        <CategoryServices services={services} category={category} />
+                        <CategoryServices services={services} category={category} setQuery={setQuery} />
                     </div>
                 </div>
 
