@@ -21,7 +21,7 @@ export default function Navbar() {
     const items = navbarItem(user?.role, handleLogout)
 
     return (
-        <div className="mx-4">
+        <div className="mx-">
 
             <Header className="" style={{ display: 'flex', alignItems: 'center', backgroundColor: "transparent", border: "0" }}>
                 <div className="demo-logo">

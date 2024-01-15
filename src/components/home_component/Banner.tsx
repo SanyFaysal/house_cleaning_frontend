@@ -2,7 +2,7 @@ import { BiSearch } from "react-icons/bi";
 
 export default function Banner() {
     return (
-        <div className='h-[75vh] mx-[-80px] opacity-90'
+        <div className='h-[75vh] mx-[-48px] opacity-90'
             style={{ backgroundImage: `url('https://cognizant.scene7.com/is/image/cognizant/strategic-partner-microsoft-banner-desktop-1?wid=1600&fit=wrap')` }}>
             <div className="flex flex-col items-center justify-center h-full ">
                 <h1 className="text-6xl text-center text-white font-bold pt-12">Your Personal Assistant</h1>

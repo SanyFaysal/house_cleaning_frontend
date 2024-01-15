@@ -18,7 +18,7 @@ export default function PageLayout({ children }: { children: React.ReactNode | R
     return (
         <>
             <Navbar />
-            <div className="min-h-[78vh] lg:mx-16">
+            <div className="min-h-[78vh] mx-12 ">
                 {children}
             </div>
             <Footer />
