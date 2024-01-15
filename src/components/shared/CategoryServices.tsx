@@ -1,7 +1,5 @@
 import { IService } from "@/types/data";
 import ServiceCard from "../ui/ServiceCard";
-import { Input } from "antd";
-import { useState } from "react";
 
 export default function CategoryServices({ services, category, setQuery }: any) {
 

@@ -31,6 +31,7 @@ export const serviceApi = baseApi.injectEndpoints({
         getAllService: build.query({
             query: (query) => {
                 const queryString = objectToQueryString(query)
+                console.log(queryString)
                 return ({
                     url: `${SERVICE_URL}/all?${queryString}`,
                     method: "GET",
