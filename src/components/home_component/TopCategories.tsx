@@ -4,7 +4,7 @@ import { useGetAllCategoriesQuery } from "@/redux/api/categoryApi";
 
 
 export default function TopCategories() {
-    const { data } = useGetAllCategoriesQuery(undefined);
+    const { data }: any = useGetAllCategoriesQuery(undefined);
     return (
         <div className="my-12">
             <h1 className="text-2xl font-semibold mb-5 ">Top Categories</h1>
@@ -13,7 +13,7 @@ export default function TopCategories() {
                 {data?.data?.map((category: any) =>
                     <>
                         {
-                            category?.service?.length ? <div className="bg-slate-50 px-3 py-2 rounded-lg text-center">
+                            category?.service?.length ? <div className="bg-white px-3 py-2 rounded-lg text-center">
                                 <p className="text-lg">{category?.title}</p>
 
                             </div> : <></>

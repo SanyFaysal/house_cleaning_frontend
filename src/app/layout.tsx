@@ -1,14 +1,8 @@
 
+
 import Providers from '@/lib/Providers'
 import './globals.css'
 
-import Navbar from '@/components/shared/Navbar'
-import { getFromLocalStorage } from '@/utils/local-storage'
-
-import { authKey } from '@/constants/storageKey'
-import { useEffect } from 'react'
-import { useAppDispatch } from '@/redux/hook'
-import { fetchUser } from '@/redux/slices/userSlice'
 import { Metadata } from 'next'
 
 
@@ -22,15 +16,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // const dispatch = useAppDispatch()
-  // const token = getFromLocalStorage(authKey)
-  // useEffect(() => {
-  //   dispatch(fetchUser(token as string))
-  // }, [token])
+
   return (
     <Providers>
       <html lang="en">
-        <body>{children}</body>
+        <body className='bg-gray-100'>{children}</body>
       </html>
     </Providers>
 

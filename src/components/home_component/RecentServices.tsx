@@ -28,7 +28,7 @@ export default function RecentServices() {
                     opts={{
                         align: "start",
                     }}
-                    className="mx-12 "
+                    className="mx-2 "
                 >
                     <CarouselContent>
 
@@ -37,8 +37,8 @@ export default function RecentServices() {
                             <ServiceCard service={service} key={service?.id} />
                         </CarouselItem>)}
                     </CarouselContent>
-                    <CarouselPrevious className="bg-blue-500 text-white" />
-                    <CarouselNext className="bg-blue-500 text-white" />
+                    <CarouselPrevious className="bg-white text-black" />
+                    <CarouselNext className="bg-white text-black" />
                 </Carousel>
             </div>
         </div>

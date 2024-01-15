@@ -4,9 +4,9 @@ import { baseApi } from "./baseApi"
 const CATEGORY_URL = "/category";
 
 export const categoryApi = baseApi.injectEndpoints({
-    endpoints: (build) => ({
+    endpoints: (build: any) => ({
         createCategory: build.mutation({
-            query: ({ token, data }) => ({
+            query: ({ token, data }: { token: string, data: any }) => ({
                 url: `${CATEGORY_URL}`,
                 method: "POST",
                 headers: {
@@ -17,7 +17,7 @@ export const categoryApi = baseApi.injectEndpoints({
             invalidatesTags: ["CATEGORY"]
         }),
         updateCategory: build.mutation({
-            query: ({ token, data, id }) => ({
+            query: ({ token, data, id }: any) => ({
                 url: `${CATEGORY_URL}/${id}`,
                 method: "PATCH",
                 headers: {
@@ -28,7 +28,7 @@ export const categoryApi = baseApi.injectEndpoints({
             invalidatesTags: ["CATEGORY"]
         }),
         getAllCategories: build.query({
-            query: (token) => ({
+            query: (token: string) => ({
                 url: `${CATEGORY_URL}/all`,
                 method: "GET",
 
@@ -36,14 +36,14 @@ export const categoryApi = baseApi.injectEndpoints({
             providesTags: ["CATEGORY"]
         }),
         getCategoryById: build.query({
-            query: (id) => ({
+            query: (id: string) => ({
                 url: `${CATEGORY_URL}/${id}`,
                 method: "GET",
             }),
             providesTags: ["CATEGORY"]
         }),
         deleteCategory: build.mutation({
-            query: ({ id, token }) => ({
+            query: ({ id, token }: any) => ({
                 url: `${CATEGORY_URL}/${id}`,
                 method: "DELETE",
                 headers: {
