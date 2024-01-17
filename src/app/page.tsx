@@ -22,9 +22,9 @@ export default function Home() {
       <RecentServices />
       <TopCategories />
       <TotalCalculation />
+      <RecentClientReviews />
       <WhyChooseUs />
       <HowItWorks />
-      <RecentClientReviews />
     </PageLayout>
   )
 }

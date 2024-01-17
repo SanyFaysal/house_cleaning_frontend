@@ -10,14 +10,13 @@ export default function TopCategories() {
             <h1 className="text-2xl font-semibold mb-5 ">Top Categories</h1>
             <div className="px-2 flex flex-wrap  gap-10">
 
-                {data?.data?.map((category: any) =>
-                    <>
-                        {
-                            category?.service?.length ? <div className="bg-white px-3 py-2 rounded-lg text-center">
-                                <p className="text-lg">{category?.title}</p>
+                {data?.data?.map((category: any) => <>
+                    {
+                        category?.service?.length ? <div className="bg-gr px-3 py-2 rounded-lg text-center">
+                            <p className="text-lg">{category?.title}</p>
 
-                            </div> : <></>
-                        }</>
+                        </div> : <></>
+                    }</>
                 )
                 }
             </div>

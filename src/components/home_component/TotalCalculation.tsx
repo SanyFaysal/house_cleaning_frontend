@@ -18,12 +18,12 @@ export default function TotalCalculation() {
     return (
 
 
-        <div className="grid grid-cols-3 text-center my-12 p-5">
+        <div className="grid grid-cols-3 text-center my-12 p-5 bg-gray-50">
             <div>
                 <p className="text-5xl">   <CountUp end={services?.length} duration={3} separator="," /> +</p>
                 <h1>Service Providers</h1>
             </div>
-            <div className="border-x-4 border-white">
+            <div className="border-x-4 border-gray-200">
                 <p className="text-5xl">   <CountUp end={bookings?.length} duration={3} separator="," /> +</p>
                 <h1>Order Served</h1>
             </div>

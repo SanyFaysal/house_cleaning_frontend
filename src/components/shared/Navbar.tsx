@@ -21,9 +21,9 @@ export default function Navbar() {
     const items = navbarItem(user?.role, handleLogout)
 
     return (
-        <div className="mx-">
+        <div className="bg-slate-900 text-white">
 
-            <Header className="" style={{ display: 'flex', alignItems: 'center', backgroundColor: "transparent", border: "0" }}>
+            <Header className="" style={{ display: 'flex', alignItems: 'center', backgroundColor: "", border: "0" }}>
                 <div className="demo-logo">
                     <Link href={'/'} className="font-semibold">Demo logo</Link>
                 </div>
@@ -31,8 +31,8 @@ export default function Navbar() {
                     mode="horizontal"
                     defaultSelectedKeys={['2']}
                     items={items}
-                    className="flex justify-end border-0"
-                    style={{ flex: 1, minWidth: 0, backgroundColor: "transparent", border: "0px" }}
+                    className="flex justify-end border-0 text-white"
+                    style={{ flex: 1, minWidth: 0, backgroundColor: "transparent", border: "0px", color: 'white' }}
                 />
             </Header>
         </div>
