@@ -40,6 +40,15 @@ export const serviceApi = baseApi.injectEndpoints({
             },
             providesTags: ["SERVICES"]
         }),
+        getAllServiceIds: build.query({
+            query: () => {
+                return ({
+                    url: `${SERVICE_URL}/all-ids`,
+                    method: "GET",
+                })
+            },
+            providesTags: ["SERVICES"]
+        }),
         getServiceById: build.query({
             query: (id) => ({
                 url: `${SERVICE_URL}/${id}`,
@@ -130,6 +139,7 @@ export const {
     useGetAllServiceQuery,
     useCreateServiceMutation,
     useGetServiceByIdQuery,
+    useGetAllServiceIdsQuery,
     useDeleteServiceMutation,
     useUpdateServiceMutation,
     useGetAvailableServiceForReviewQuery,

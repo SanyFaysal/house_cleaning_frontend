@@ -9,10 +9,17 @@ export const reviewApi = baseApi.injectEndpoints({
                 method: "GET",
             }),
         }),
+        getAllReviewIds: build.query({
+            query: () => ({
+                url: `${REVIEW_URL}/all-ids`,
+                method: "GET",
+            }),
+        }),
     }),
 
 })
 
 export const {
-    useGetAllReviewsQuery
+    useGetAllReviewsQuery,
+    useGetAllReviewIdsQuery
 } = reviewApi

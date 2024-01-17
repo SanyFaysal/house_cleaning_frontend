@@ -22,7 +22,7 @@ export default function CategoryServices({ services, category, setQuery }: any) 
                     <button type="submit" className="px-3  py-2 border rounded ">Search</button>
                 </form>
             </div>
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid grid-cols-3 gap-5 mb-10">
 
                 {
                     services?.map((service: IService) => <ServiceCard service={service} key={service?.id} />)

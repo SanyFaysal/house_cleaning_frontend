@@ -18,7 +18,7 @@ export default function ServiceDetails() {
     const services = data?.data;
     const highestPrice = data?.highestPrice;
     const lowestPrice = data?.lowestPrice;
-    const { data: categoryData } = useGetAllCategoriesQuery(undefined);
+    const { data: categoryData }: any = useGetAllCategoriesQuery(undefined);
     const categories = categoryData?.data;
 
 
