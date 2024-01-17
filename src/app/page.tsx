@@ -10,6 +10,7 @@ import WhyChooseUs from '@/components/home_component/WhyChooseUs';
 import TopCategories from '@/components/home_component/TopCategories';
 import RecentClientReviews from "@/components/home_component/RecentClientReviews";
 import TotalCalculation from "@/components/home_component/TotalCalculation";
+import HowItWorks from "@/components/home_component/HowItWorks";
 
 
 export default function Home() {
@@ -20,9 +21,10 @@ export default function Home() {
       <Banner />
       <RecentServices />
       <TopCategories />
-      <RecentClientReviews />
       <TotalCalculation />
       <WhyChooseUs />
+      <HowItWorks />
+      <RecentClientReviews />
     </PageLayout>
   )
 }

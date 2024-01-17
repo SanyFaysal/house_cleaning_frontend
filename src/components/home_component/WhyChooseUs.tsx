@@ -10,32 +10,32 @@ export default function WhyChooseUs() {
             <div className="grid grid-cols-2 gap-10 mt-5">
                 <div className="grid grid-cols-3 gap-5">
 
-                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-slate-50 justify-center">
+                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-gray-50 justify-center">
                         <BiPhoneCall className='text-4xl text-blue-500' />
                         <p className=" ">24/7 <br /> Support</p>
                     </div>
 
-                    <div className="   flex   flex-col gap-2  text-center gap-x-5 bg-slate-50 justify-center items-center  ">
+                    <div className="   flex   flex-col gap-2  text-center gap-x-5 bg-gray-50 justify-center items-center  ">
 
                         <VscWorkspaceTrusted
                             className='text-4xl text-blue-500 ' />
                         <p className="  ">Experienced <br /> Professionals</p>
                     </div>
 
-                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-slate-50 justify-center  ">
+                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-gray-50 justify-center  ">
                         <BiPhoneCall className='text-4xl text-blue-500' />
                         <p className=" ">Customer <br /> Satisfaction</p>
                     </div>
-                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-slate-50 justify-center  ">
+                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-gray-50 justify-center  ">
                         <BiPhoneCall className='text-4xl text-blue-500' />
                         <p className="">Customer <br /> Satisfaction</p>
                     </div>
-                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-slate-50 justify-center  ">
+                    <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-gray-50 justify-center  ">
                         <BiPhoneCall className='text-4xl text-blue-500' />
                         <p className=" ">Customer <br /> Satisfaction</p>
                     </div>
 
-                    <div className="   flex   flex-col gap-2  text-center gap-x-5 bg-slate-50 justify-center items-center ">
+                    <div className="   flex   flex-col gap-2  text-center gap-x-5 bg-gray-50 justify-center items-center ">
                         <BiPhoneCall className='text-4xl text-blue-500 ' />
                         <p className="  ">Wide Range of  <br /> Services</p>
                     </div>

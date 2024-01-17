@@ -1,9 +1,10 @@
 'use client'
 
 import { useGetAllBookingsIdQuery } from "@/redux/api/booking.api"
-import { useGetAllReviewIdsMutation, useGetAllReviewIdsQuery } from "@/redux/api/reveiw.api";
+import { useGetAllReviewIdsQuery } from "@/redux/api/reveiw.api";
 import { useGetAllServiceIdsQuery } from "@/redux/api/serviceApi";
-import { Statistic } from "antd";
+
+
 import CountUp from 'react-countup';
 
 export default function TotalCalculation() {
@@ -15,7 +16,9 @@ export default function TotalCalculation() {
     const reviews = reviewData?.data;
 
     return (
-        <div className="grid grid-cols-3 text-center my-12   p-5">
+
+
+        <div className="grid grid-cols-3 text-center my-12 p-5">
             <div>
                 <p className="text-5xl">   <CountUp end={services?.length} duration={3} separator="," /> +</p>
                 <h1>Service Providers</h1>
@@ -30,5 +33,6 @@ export default function TotalCalculation() {
             </div>
 
         </div>
+
     )
 }

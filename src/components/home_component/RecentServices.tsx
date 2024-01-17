@@ -32,7 +32,7 @@ export default function RecentServices() {
                 >
                     <CarouselContent>
 
-                        {services?.map((service: IService) => <CarouselItem key={service?.id} className="md:basis-1/2 lg:basis-1/4 rounded-lg">
+                        {services?.map((service: IService) => <CarouselItem key={service?.id} className="md:basis-1/2 lg:basis-1/4 rounded-lg ">
 
                             <ServiceCard service={service} key={service?.id} />
                         </CarouselItem>)}

@@ -14,8 +14,8 @@ export default function RecentClientReviews() {
     const { data }: any = useGetAllReviewsQuery(undefined);
 
     return (
-        <div>
-            <h1 className="text-2xl mt-20 font-semibold mb-5">Recent Client Reviews</h1>
+        <div className="my-10">
+            <h1 className="text-2xl  font-semibold mb-5">Recent Client Reviews</h1>
             <div>
                 <Carousel
                     opts={{

@@ -4,7 +4,7 @@ import { BiSolidQuoteAltLeft } from "react-icons/bi";
 
 export default function ReviewCard({ review }: { review: any }) {
     return (
-        <div className="flex gap-3">
+        <div className="flex gap-3 ">
             <p className="bg-gray-100 text-gray-500 h-fit p-3 rounded-full">
                 <BiSolidQuoteAltLeft className="text-2xl   " />
             </p>
