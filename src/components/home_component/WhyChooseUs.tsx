@@ -11,7 +11,7 @@ export default function WhyChooseUs() {
 
             <p>___WHY CHOOSE US</p>
             <h1 className="text-2xl font-semibold mt-2">Because we care about your safety..</h1>
-            <div className="grid grid-cols-2 gap-10 mt-5">
+            <div className="grid lg:grid-cols-2 gap-10 mt-5">
                 <div className="grid grid-cols-3 gap-5">
 
                     <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-gray-50 rounded  justify-center">

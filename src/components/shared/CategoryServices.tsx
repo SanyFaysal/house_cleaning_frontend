@@ -12,7 +12,7 @@ export default function CategoryServices({ services, category, setQuery }: any) 
 
     return (
         <div className="px-5">
-            <div className="flex justify-between mb-4 items-center">
+            <div className="lg:flex justify-between mb-4 items-center">
                 <div>
                     <h3 className="text-2xl font-semibold">{category?.title ?? 'All'}</h3>
                     <h3 className="text-lg mb-3"> Total Found : {services?.length}</h3>
@@ -22,7 +22,7 @@ export default function CategoryServices({ services, category, setQuery }: any) 
                     <button type="submit" className="px-3  py-2 border rounded ">Search</button>
                 </form>
             </div>
-            <div className="grid grid-cols-3 gap-5 mb-10">
+            <div className="grid lg:grid-cols-3 gap-5 mb-10">
 
                 {
                     services?.map((service: IService) => <ServiceCard service={service} key={service?.id} />)

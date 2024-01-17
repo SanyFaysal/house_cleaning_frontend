@@ -34,12 +34,12 @@ export default function ServiceDetails() {
     return (
         <PageLayout>
             <div className="">
-                <div className="mt-4 h-full grid grid-cols-6">
-                    <div className="sticky h-[80vh] border-r flex flex-col gap-5 top-10 col-span-1">
+                <div className="mt-4 h-full grid lg:grid-cols-6">
+                    <div className="lg:sticky h-[80vh] border-r flex flex-col gap-5 top-10 col-span-1">
                         <div className="flex justify-between pr-3 items-center">
                             <h4 className="text-xl"> Categories</h4>
                         </div>
-                        <div className="grid grid-cols-1 gap-y-2">
+                        <div className="grid lg:grid-cols-1 gap-y-2">
                             <div
                                 className={`
                                 text-semibold 
@@ -64,7 +64,7 @@ export default function ServiceDetails() {
                         </div>
 
                     </div>
-                    <div className=" gap-5    col-span-5">
+                    <div className=" lg:gap-5    lg:col-span-5">
                         <CategoryServices services={services} category={category} setQuery={setQuery} />
                     </div>
                 </div>

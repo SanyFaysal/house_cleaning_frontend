@@ -49,7 +49,6 @@ export default function BookingCard({ booking }: { booking: any }) {
                 </div>
                 <div className="flex gap-2">
                     <p>
-
                         <span className={`border   rounded-full px-2
                          ${booking?.status === 'PENDING' ?
                                 'border-yellow-500 text-yellow-500'

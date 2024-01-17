@@ -13,7 +13,7 @@ export default function TopCategories() {
                 {data?.data?.map((category: any) => <>
                     {
                         category?.service?.length ? <div className="bg-gr px-3 py-2 rounded-lg text-center">
-                            <p className="text-lg">{category?.title}</p>
+                            <li className="text-lg">{category?.title}</li>
 
                         </div> : <></>
                     }</>

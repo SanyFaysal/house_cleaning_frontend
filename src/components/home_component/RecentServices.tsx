@@ -37,8 +37,8 @@ export default function RecentServices() {
                             <ServiceCard service={service} key={service?.id} />
                         </CarouselItem>)}
                     </CarouselContent>
-                    <CarouselPrevious className="bg-white text-black" />
-                    <CarouselNext className="bg-white text-black" />
+                    <CarouselPrevious className=" border-0 text-black" />
+                    <CarouselNext className=" border-0 text-black" />
                 </Carousel>
             </div>
         </div>
