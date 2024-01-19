@@ -8,6 +8,7 @@ import { useAppSelector } from "@/redux/hook";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Table, message } from "antd";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -32,7 +33,11 @@ export default function AllCategories() {
     const columns = [
         {
             title: 'Category Title',
-            dataIndex: 'title',
+            dataIndex: 'services',
+            render: (_: any, record: any) => <div className="flex gap-2 items-center">
+                <Image src={record?.image ?? ''} height={80} width={80} className="rounded-lg border" alt="Category Image" />
+                <p className="font-semibold">{record?.title}</p>
+            </div>
 
         },
 

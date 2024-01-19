@@ -48,7 +48,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode | React.React
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div className='sticky top-4'>
 
-                    <Image src={'/images/logo2.png'} className='px-2' width={180} height={100} alt='Logo' />
+                    <Image src={'/images/logo.png'} className='px-2' width={180} height={100} alt='Logo' />
                     <div className=" ml-6 mt-8 mb-4  text-white " >
                         <Button onClick={() => router.push('/')} className=''> <span className='flex '><HomeOutlined />{!collapsed && "  Back to home"}</span></Button>
                     </div>

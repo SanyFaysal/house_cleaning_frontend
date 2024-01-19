@@ -6,24 +6,24 @@ const CATEGORY_URL = "/category";
 export const categoryApi = baseApi.injectEndpoints({
     endpoints: (build: any) => ({
         createCategory: build.mutation({
-            query: ({ token, data }: { token: string, data: any }) => ({
+            query: ({ token, formData }: { token: string, formData: any }) => ({
                 url: `${CATEGORY_URL}`,
                 method: "POST",
                 headers: {
                     authorization: `Bearer ${token}`,
                 },
-                body: data
+                body: formData
             }),
             invalidatesTags: ["CATEGORY"]
         }),
         updateCategory: build.mutation({
-            query: ({ token, data, id }: any) => ({
+            query: ({ token, formData, id }: any) => ({
                 url: `${CATEGORY_URL}/${id}`,
                 method: "PATCH",
                 headers: {
                     authorization: `Bearer ${token}`,
                 },
-                body: data
+                body: formData
             }),
             invalidatesTags: ["CATEGORY"]
         }),

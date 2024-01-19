@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Button,
     Form,
@@ -18,6 +18,7 @@ import LoadingComponent from '@/components/ui/Loading';
 
 
 const EditCategory = () => {
+    const [image, setImage] = useState();
     const params = useParams();
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
@@ -26,10 +27,20 @@ const EditCategory = () => {
     const [updateCategory] = useUpdateCategoryMutation()
 
 
+    const handleFileChange = (e: any) => {
+        const getFile = e.target.files[0];
+        if (getFile) {
+            setImage(getFile);
+        }
+    }
+
     const handleAddCategory = async (data: any) => {
         try {
+            const formData = new FormData();
+            if (image) { formData.append('image', image) }
+            formData.append("data", JSON.stringify(data))
 
-            const res: any = await updateCategory({ id: category?.id, token, data }).unwrap()
+            const res: any = await updateCategory({ id: category?.id, token, formData }).unwrap()
 
             if (res?.status) {
                 message.success('Update Successful');
@@ -62,7 +73,14 @@ const EditCategory = () => {
                 <Form.Item label="Category Title" name='title'>
                     <Input />
                 </Form.Item>
+                <Form.Item
 
+                    label="Upload"
+
+                >
+                    <input type="file" onChange={handleFileChange} id="" />
+
+                </Form.Item>
                 <div className='w-full flex justify-start items-center mt-2'>
                     <Button type="primary" htmlType="submit">
                         Update Category

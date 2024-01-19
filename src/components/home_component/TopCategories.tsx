@@ -1,6 +1,8 @@
 'use client'
 
 import { useGetAllCategoriesQuery } from "@/redux/api/categoryApi";
+import CategoryCard from "../../../CategoryCard";
+import { ICategory } from "@/types/data";
 
 
 export default function TopCategories() {
@@ -10,14 +12,7 @@ export default function TopCategories() {
             <h1 className="text-2xl font-semibold mb-5 ">Top Categories</h1>
             <div className="px-2 flex flex-wrap  gap-10">
 
-                {data?.data?.map((category: any) => <>
-                    {
-                        category?.service?.length ? <div className="bg-gr px-3 py-2 rounded-lg text-center">
-                            <li className="text-lg">{category?.title}</li>
-
-                        </div> : <></>
-                    }</>
-                )
+                {data?.data?.map((category: ICategory) => <CategoryCard category={category} key={category?.id} />)
                 }
             </div>
         </div>

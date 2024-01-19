@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Button,
     Form,
@@ -16,16 +16,29 @@ import { authKey } from '@/constants/storageKey';
 
 
 const AddService = () => {
+    const [image, setImage] = useState()
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
 
     const [addCategory] = useCreateCategoryMutation()
 
-
-    const handleAddCategory = async (data: any) => {
+    const handleFileChange = (e: any) => {
+        const getFile = e.target.files[0];
+        if (getFile) {
+            setImage(getFile);
+        }
+    }
+    const handleAddCategory = async (fields: any) => {
         try {
+            if (!image) { return message.error('Please select an image') }
+            const data = {
+                title: fields.title,
+            };
+            const formData = new FormData();
+            formData.append("image", image);
+            formData.append('data', JSON.stringify(data));
 
-            const res: any = await addCategory({ token, data }).unwrap()
+            const res: any = await addCategory({ token, formData }).unwrap()
 
             if (res?.status) {
                 message.success('Added Successful');
@@ -53,7 +66,14 @@ const AddService = () => {
                 <Form.Item rules={[{ required: true, message: 'Category title is required' }]} label="Category Title" name='title'>
                     <Input />
                 </Form.Item>
+                <Form.Item
 
+                    label="Upload"
+
+                >
+                    <input type="file" required onChange={handleFileChange} id="" />
+
+                </Form.Item>
                 <div className='w-full flex justify-start items-center mt-2'>
                     <Button type="primary" htmlType="submit">
                         Add Category

@@ -32,3 +32,12 @@ export interface IUser {
     review?: any;
     role?: string
 }
+
+export interface ICategory {
+    id?: string,
+    title: string;
+    image: string;
+    createdAt?: string,
+    updatedAt?: string,
+    service?: any[]
+}

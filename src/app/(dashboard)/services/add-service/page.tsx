@@ -78,7 +78,7 @@ const AddService = () => {
             <CommonPageTitle title='Add Service' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>All Services</p> },
+                    { title: <p className=''>All Services</p> },
                 ]
             } />
 
