@@ -5,7 +5,7 @@ import { PiNumberCircleFourFill, PiNumberCircleOneFill, PiNumberCircleThreeFill,
 
 export default function HowItWorks() {
     return (
-        <div className="mt-12">
+        <div className="my-20">
 
             <p>___HOW IT WORKS</p>
             <h1 className="text-2xl font-semibold mt-2">Easiest way to get a service</h1>

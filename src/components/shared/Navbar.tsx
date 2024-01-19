@@ -22,26 +22,26 @@ export default function Navbar() {
     const items = navbarItem(user?.role, handleLogout)
 
     return (
-        <div className="sticky top-0 z-[99] 	 ">
-            <Header className="" style={{
-                display: 'flex',
-                alignItems: 'center',
-                backgroundColor: "white", border: "0",
+        <div className="sticky top-0 z-[99] h-[90px] 	bg-white ">
+            <div className=" grid grid-cols-4">
+                <Link href={'/'} className="font-semibold col-span-1 lg:py-3 py-1 px-12 lg:px-12  bg-[#f7f7f7] rounded-br-[600px]">
+                    <Image src={'/images/logo2.png'} height={180} width={200} alt="logo" />
+                </Link>
 
-            }}>
-                <div className="demo-logo">
-                    <Link href={'/'} className="font-semibold">
-                        <Image src={'/images/logo2.png'} height={170} width={200} alt="logo" />
-                    </Link>
+                <div className="flex flex-col items-end w-full col-span-3 ml-[-4px]   ">
+                    <p className="font-medium text-sm  bg-[#f7f7f7]   w-full lg:py-1 px-12 lg:px-12  text-end ">Call our team today at  <span className="text-sky-500">  0123456789</span></p>
+                    <Menu
+                        mode="horizontal"
+                        defaultSelectedKeys={['2']}
+                        items={items}
+                        className="flex justify-end  border-0 text-black z-[99] w-full lg:py-1 lg:pr- "
+                        style={{ flex: 1, minWidth: 0, fontWeight: '500', paddingRight: "30px", backgroundColor: "transparent", color: 'black', border: "0px", }}
+                    />
                 </div>
-                <Menu
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    items={items}
-                    className="flex justify-end border-0 text-black z-[99]"
-                    style={{ flex: 1, minWidth: 0, fontWeight: '500', backgroundColor: "transparent", color: 'black', border: "0px", }}
-                />
-            </Header>
+            </div>
+
+
+
         </div>
 
     )

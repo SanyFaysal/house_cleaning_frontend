@@ -17,7 +17,7 @@ export default function RecentServices() {
     const services = data?.data;
 
     return (
-        <div>
+        <div className="my-1">
 
 
             <h1 className="text-2xl mt-20 font-semibold mb-5">Recent Services</h1>
@@ -37,8 +37,8 @@ export default function RecentServices() {
                             <ServiceCard service={service} key={service?.id} />
                         </CarouselItem>)}
                     </CarouselContent>
-                    <CarouselPrevious className=" border-0 text-black" />
-                    <CarouselNext className=" border-0 text-black" />
+                    <CarouselPrevious className=" border-0 text-sky-500" />
+                    <CarouselNext className=" border-0 text-sky-500" />
                 </Carousel>
             </div>
         </div>

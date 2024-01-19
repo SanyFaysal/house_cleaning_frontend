@@ -7,7 +7,7 @@ import { GrServices } from "react-icons/gr";
 
 export default function WhyChooseUs() {
     return (
-        <div className="my-10">
+        <div className="my-20">
 
             <p>___WHY CHOOSE US</p>
             <h1 className="text-2xl font-semibold mt-2">Because we care about your safety..</h1>

@@ -29,8 +29,8 @@ export default function RecentClientReviews() {
                             <ReviewCard review={review} key={review?.id} />
                         </CarouselItem>)}
                     </CarouselContent>
-                    <CarouselPrevious className="border-0 text-black" >Prev</CarouselPrevious>
-                    <CarouselNext className="border-0 text-black" />
+                    <CarouselPrevious className="border-0 text-sky-500" >Prev</CarouselPrevious>
+                    <CarouselNext className="border-0 text-sky-500" />
                 </Carousel>
             </div>
         </div>

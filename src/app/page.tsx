@@ -23,8 +23,8 @@ export default function Home() {
       <Banner />
       <RecentServices />
       <TopCategories />
-      <TotalCalculation />
       <RecentClientReviews />
+      <TotalCalculation />
       <WhyChooseUs />
       <HowItWorks />
     </PageLayout>
