@@ -17,7 +17,7 @@ export default function AllBookings() {
     const [query, setQuery] = useState<any>({});
     const token = getFromLocalStorage(authKey)
     const { user } = useAppSelector(state => state.auth);
-    const { data } = useGetAllBookingQuery({ token, query });
+    const { data }: any = useGetAllBookingQuery({ token, query });
     const [updateBooking] = useUpdateBookingStatusMutation();
     const [cancelBooking] = useCancelBookingMutation();
     const bookings = data?.data;
@@ -140,7 +140,7 @@ export default function AllBookings() {
             <CommonPageTitle title='All Bookings' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>All Bookings</p> },
+                    { title: <p className=''>All Bookings</p> },
                 ]
             }>
                 <button onClick={() => setQuery({})} className={` p-3 py-2 mt-5 rounded  mr-3 border ${!query.status ? 'bg-black text-white' : ""} `} >All</button>

@@ -40,7 +40,7 @@ const AddService = () => {
             <CommonPageTitle title='Add Category' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>Add Category</p> },
+                    { title: <p className=''>Add Category</p> },
                 ]
             } />
 

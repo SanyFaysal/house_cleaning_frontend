@@ -15,7 +15,7 @@ export default function AllCategories() {
     const token = getFromLocalStorage(authKey);
     const router = useRouter()
     const { user } = useAppSelector(state => state.auth);
-    const { data } = useGetAllCategoriesQuery(undefined);
+    const { data }: any = useGetAllCategoriesQuery(undefined);
     const [deleteCategory] = useDeleteCategoryMutation()
 
     const handleDeleteCategory = async (id: string) => {
@@ -66,7 +66,7 @@ export default function AllCategories() {
             <CommonPageTitle title='All Category' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>Edit Category</p> },
+                    { title: <p className=''>Edit Category</p> },
                 ]
             }>
                 <Link href={'/services/add-category'}>  <Button>Add Category</Button></Link>

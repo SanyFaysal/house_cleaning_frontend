@@ -21,7 +21,7 @@ const EditCategory = () => {
     const params = useParams();
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
-    const { data } = useGetCategoryByIdQuery(params?.categoryId);
+    const { data }: any = useGetCategoryByIdQuery(params?.categoryId);
     const category = data?.data;
     const [updateCategory] = useUpdateCategoryMutation()
 
@@ -48,7 +48,7 @@ const EditCategory = () => {
             <CommonPageTitle title='Edit Category' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>Edit Category</p> },
+                    { title: <p className=''>Edit Category</p> },
                 ]
             } />
 

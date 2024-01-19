@@ -51,7 +51,7 @@ export default function page() {
             [
                 { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
                 {
-                    title: <p className='text-gray-400'>All new Services</p>
+                    title: <p className=''>All new Services</p>
                 },
             ]
         } />

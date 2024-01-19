@@ -71,7 +71,7 @@ const AddBooking = () => {
                 userId: user?.id,
                 scheduleId: getBookingData?.id,
             }
-            const res = await addBooking({ token, data: bookingData }).unwrap()
+            const res: any = await addBooking({ token, data: bookingData }).unwrap()
             if (res?.status) {
                 message.success(res.message);
                 setToLocalStorage('bookingData', JSON.stringify("{}"));

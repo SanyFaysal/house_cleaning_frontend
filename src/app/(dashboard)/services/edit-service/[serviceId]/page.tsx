@@ -31,14 +31,14 @@ const { TextArea } = Input;
 const EditService = () => {
     const [service, setService] = useState<IService>()
     const params = useParams()
-    const { data: response } = useGetServiceByIdQuery(params?.serviceId)
+    const { data: response }: any = useGetServiceByIdQuery(params?.serviceId)
     const serviceData = response?.data;
 
 
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
     const [image, setImage] = useState<any>()
-    const { data } = useGetAllCategoriesQuery(undefined);
+    const { data }: any = useGetAllCategoriesQuery(undefined);
     const [updateService] = useUpdateServiceMutation()
     const categories = data?.data;
     const reformedCategories = arrayReformed(categories, { label: "title", value: 'id' });
@@ -94,7 +94,7 @@ const EditService = () => {
             <CommonPageTitle title='Edit Service' items={
                 [
                     { title: <Link href={`/${user?.role?.toLocaleLowerCase()}`}>Home</Link> },
-                    { title: <p className='text-gray-400'>Edit Service</p> },
+                    { title: <p className=''>Edit Service</p> },
                 ]
             } />
 

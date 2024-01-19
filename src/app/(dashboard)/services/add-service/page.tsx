@@ -39,9 +39,9 @@ const AddService = () => {
     const { user } = useAppSelector(state => state.auth)
     const token = getFromLocalStorage(authKey)
     const [image, setImage] = useState<any>()
-    const { data } = useGetAllCategoriesQuery(undefined);
+    const { data }: any = useGetAllCategoriesQuery(undefined);
     const [addService] = useCreateServiceMutation()
-    const categories = data?.data;
+    const categories: any[] = data?.data;
     const reformedCategories = arrayReformed(categories, { label: "title", value: 'id' });
     const handleFileChange = (e: any) => {
         const getFile = e.target.files[0];

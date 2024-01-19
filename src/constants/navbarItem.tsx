@@ -22,7 +22,7 @@ export const navbarItem = (role: string | any, handleLogout: any | null | undefi
             //     key: 'cart', label: <Link href={'/'}> <ShoppingCartOutlined style={{ fontSize: "18px" }} /></Link>
             // },
             { key: 'profile ', label: <Link href={'/user'}>Profile</Link> },
-            { key: 'logout ', label: <Button onClick={() => handleLogout()}>Logout </Button> },
+            { key: 'logout ', label: <Button onClick={() => handleLogout()} style={{ fontWeight: '500' }}>Logout </Button> },
         ]
     }
     else if (role && role === 'ADMIN') {
