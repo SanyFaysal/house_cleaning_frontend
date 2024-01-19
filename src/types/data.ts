@@ -16,6 +16,7 @@ export type IService = {
     schedule?: any;
     image?: string;
 
+
 }
 
 export interface IUser {
@@ -23,6 +24,7 @@ export interface IUser {
     fullName?: string,
     email?: string,
     image?: string,
+    address?: string
     phoneNumber?: string;
     createdAt?: string;
     updatedAt?: string;

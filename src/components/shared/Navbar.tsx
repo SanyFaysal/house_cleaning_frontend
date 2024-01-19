@@ -31,7 +31,7 @@ export default function Navbar() {
             }}>
                 <div className="demo-logo">
                     <Link href={'/'} className="font-semibold">
-                        <Image src={'/images/logo.png'} height={170} width={200} alt="logo" />
+                        <Image src={'/images/logo2.png'} height={170} width={200} alt="logo" />
                     </Link>
                 </div>
                 <Menu

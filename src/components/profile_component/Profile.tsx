@@ -1,10 +1,13 @@
+'use client'
+
 import { useAppSelector } from '@/redux/hook';
 import { IUser } from '@/types/data';
-import { icons } from 'lucide-react';
+
 import Image from 'next/image';
 import React from 'react';
 
-const Profile = () => {
+
+export default function Profile() {
     const { user }: { user: IUser } = useAppSelector((state) => state.auth)
 
     return (
@@ -13,34 +16,36 @@ const Profile = () => {
             <p className='text-center text-3xl uppercase'>({user.role})</p>
             <div className='flex flex-col items-center my-5'>
                 <Image
-                    src={user?.image}
+                    src={user?.image ?? ""}
                     alt={`${user?.fullName}'s avatar`}
                     height={200}
                     width={100}
                     className='rounded-lg'
                 />
 
-                <div className=' grid grid-cols-2 gap-5 text-md w-full pt-3 '>
-                    <div className=' text-end '>
-                        <h3>Name : </h3>
-                        <h3>Email Information : </h3>
-                        <h3>Phone Number : </h3>
-                        <h3>Address :</h3>
-                    </div>
-                    <div className=' '>
-                        <h3>Abu Sani Faysal</h3>
-                        <h3>tfoysalahmed@gamil.com</h3>
-                        <h3>01634319696</h3>
-                        <h3>Gazipur Dhaka, Kadma</h3>
-                    </div>
+                <div className=' grid lg:grid-cols-2 lg:gap-5 text-md text-start w-full '>
+
+                    <h3 className='lg:text-end'>Name  </h3>
+                    <h3>{user?.fullName}</h3>
+                    <h3 className='lg:text-end'>Email  </h3>
+                    <h3>{user?.email}</h3>
+                    <h3 className='lg:text-end'>Number  </h3>
+                    <h3 >{user?.phoneNumber ?? <span className='text-gray-500'>Not added yet</span>}</h3>
+                    <h3 className='lg:text-end'>Address </h3>
+                    <h3 >{user?.address ?? <span className='text-gray-500'>Not added yet</span>}</h3>
+
+
+
+
+
+
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 };
 
-export default Profile;
 
 
 // Thank you nasir uddin vai.
