@@ -9,6 +9,7 @@ export const navbarItem = (role: string | any, handleLogout: any | null | undefi
         return items = [
             { key: 'home', label: <Link href={'/'}>Home</Link> },
             { key: 'Services', label: <Link href={'/service'}>Services</Link> },
+            { key: 'about', label: <Link href={'/about'}>About</Link> },
             { key: 'Signin', label: <Link href={'/signin'}>Signin</Link> },
             { key: 'signup', label: <Link href={'/signup'}>Signup</Link> },
         ]
@@ -17,6 +18,7 @@ export const navbarItem = (role: string | any, handleLogout: any | null | undefi
         return items = [
             { key: 'home', label: <Link href={'/'}>Home</Link> },
             { key: 'Services', label: <Link href={'/service'}>Service</Link> },
+            { key: 'about', label: <Link href={'/about'}>About</Link> },
             { key: 'dashboard ', label: <Link href={'/user'}>Dashboard</Link> },
             // {
             //     key: 'cart', label: <Link href={'/'}> <ShoppingCartOutlined style={{ fontSize: "18px" }} /></Link>
@@ -29,6 +31,7 @@ export const navbarItem = (role: string | any, handleLogout: any | null | undefi
         return items = [
             { key: 'home', label: <Link href={'/'}>Home</Link> },
             { key: 'Services', label: <Link href={'/service'}>Service</Link> },
+            { key: 'about', label: <Link href={'/about'}>About</Link> },
             { key: 'dashboard ', label: <Link href={'/admin'}>Dashboard </Link> },
             { key: 'profile ', label: <Link href={'/profile'}>Profile </Link> },
             { key: 'logout ', label: <Button onClick={() => handleLogout()}>Logout </Button> },

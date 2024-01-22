@@ -5,6 +5,7 @@ import PageLayout from "@/components/layout/PageLayout"
 import ReviewsAndComments from "@/components/service_details_component/ReviewsAndComments"
 
 import ServiceDetailsBanner from "@/components/service_details_component/ServiceDetailsBanner"
+import FaqSection from "@/components/shared/FaqSection"
 import { useGetServiceByIdQuery } from "@/redux/api/serviceApi"
 
 import { Breadcrumb, Button } from "antd"
@@ -48,7 +49,7 @@ export default function ServiceDetails() {
                         {terms}</p>)}</p>
                 </div>
                 }
-
+                <FaqSection />
                 <div>
                     <ReviewsAndComments service={service} />
                 </div>

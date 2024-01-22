@@ -7,6 +7,7 @@ import RecentClientReviews from "@/components/home_component/RecentClientReviews
 import TotalCalculation from "@/components/home_component/TotalCalculation";
 import HowItWorks from "@/components/home_component/HowItWorks";
 import { Metadata } from "next";
+import FaqSection from "@/components/shared/FaqSection";
 
 
 
@@ -27,6 +28,7 @@ export default function Home() {
       <TotalCalculation />
       <WhyChooseUs />
       <HowItWorks />
+      <FaqSection />
     </PageLayout>
   )
 }

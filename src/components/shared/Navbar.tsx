@@ -25,7 +25,7 @@ export default function Navbar() {
     return (
 
         <div className="    sticky top-[-24px] z-[99] 	bg-white ">
-            <Marquee className="text-xs bg-orange-50 text-orange-400 ">
+            <Marquee speed={10} className="text-xs bg-gray-50 text-gray-800  ">
                 <p className="lg:py-1 text-end px-5">Limited-time offer: 20% off on all electronic repairs this week !</p>
                 <p className="lg:py-1 text-end px-5">Featured Service: Repairing Service, Book Now !</p>
                 <p className="lg:py-1 text-end px-5">Exciting News! Now offering eco-friendly cleaning services.</p>
@@ -33,7 +33,7 @@ export default function Navbar() {
             </Marquee>
             <div className=" grid grid-cols-4 shadow ">
                 <Link href={'/'} className="font-semibold col-span-1  py-2 lg:px-12  ">
-                    <Image src={'/images/logo2.png'} height={180} width={200} alt="logo" className="mt-1" />
+                    <Image src={'/images/logo2.png'} height={180} width={220} alt="logo" className="mt-1  " />
                 </Link>
 
                 <div className="flex flex-col justify-center items-end w-full my-auto col-span-3 ml-[-4px]    ">
@@ -43,7 +43,7 @@ export default function Navbar() {
                         defaultSelectedKeys={['2']}
                         items={items}
                         className="flex justify-end  border-0 text-black z-[99] w-full lg:py-1 lg:pr- "
-                        style={{ flex: 1, minWidth: 0, fontWeight: '500', paddingRight: "30px", backgroundColor: "transparent", color: 'black', border: "0px", }}
+                        style={{ flex: 1, minWidth: 0, fontWeight: '500', paddingRight: "10px", backgroundColor: "transparent", color: 'black', border: "0px", }}
                     />
                 </div>
             </div>
