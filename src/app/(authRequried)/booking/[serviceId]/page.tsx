@@ -12,13 +12,13 @@ import { useAppSelector } from '@/redux/hook';
 import { useAddBookingMutation } from '@/redux/api/booking.api';
 import { authKey } from '@/constants/storageKey';
 const AddBooking = () => {
-    const [service, setService] = useState<any>();
+
     const router = useRouter()
     const token = getFromLocalStorage(authKey)
     const params = useParams()
     const { user } = useAppSelector(state => state.auth);
     const { data } = useGetServiceByIdQuery(params?.serviceId)
-
+    const service = data?.data;
 
     const getBookingData: any = getFromLocalStorage('bookingData')?.length ? JSON.parse(getFromLocalStorage('bookingData') as string) : {};
     const [current, setCurrent] = useState(0);
@@ -39,12 +39,8 @@ const AddBooking = () => {
     useEffect(() => {
         const currentStep: any = getFromLocalStorage('step') ? Number(getFromLocalStorage('step')) as number : 0
         setCurrent(currentStep)
+
     }, [])
-
-    useEffect(() => {
-        setService(data?.data)
-    }, [data?.data])
-
     const steps = [
         {
             title: 'Schedule Management',
@@ -88,6 +84,8 @@ const AddBooking = () => {
             message.error(errorMessage)
         }
     }
+
+
 
     return (
         <>
