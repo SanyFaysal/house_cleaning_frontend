@@ -3,6 +3,9 @@
 import { useGetAllBookingsIdQuery } from "@/redux/api/booking.api"
 import { useGetAllReviewIdsQuery } from "@/redux/api/reveiw.api";
 import { useGetAllServiceIdsQuery } from "@/redux/api/serviceApi";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 
 import CountUp from 'react-countup';
@@ -14,9 +17,13 @@ export default function TotalCalculation() {
     const services = serviceData?.data;
     const { data: reviewData }: any = useGetAllReviewIdsQuery(undefined);
     const reviews = reviewData?.data;
-
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
-        <div className="grid lg:grid-cols-3 gap-5 text-center my-12 px-5 py-10 bg-gray-50">
+        <div
+
+            className="grid lg:grid-cols-3 gap-5 text-center my-12 px-5 py-10 bg-gray-50">
             <div>
                 <p className="text-5xl">   <CountUp end={services?.length} duration={3} separator="," /> +</p>
                 <h1>Service Providers</h1>

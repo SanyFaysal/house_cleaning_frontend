@@ -7,6 +7,9 @@ import { Collapse, Typography } from 'antd';
 
 const { Panel } = Collapse;
 const { Title, Text } = Typography;
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 
 const faqData = [
@@ -39,8 +42,14 @@ const faqData = [
 ];
 
 const FaqSection = () => {
+
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
-        <div className="bg-gray-50">
+        <div
+
+            className="bg-gray-50">
             <div className="container mx-auto py-10">
 
 

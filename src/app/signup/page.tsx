@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import login_image from '../../../public/login-image.png';
+import login_image from '../../../public/images/login-image.png';
 import { Button, Checkbox, Form, Input, message } from "antd";
 import Link from "next/link";
 import { ArrowLeftOutlined } from "@ant-design/icons";

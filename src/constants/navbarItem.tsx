@@ -34,7 +34,7 @@ export const navbarItem = (role: string | any, handleLogout: any | null | undefi
             { key: 'about', label: <Link href={'/about'}>About</Link> },
             { key: 'dashboard ', label: <Link href={'/admin'}>Dashboard </Link> },
             { key: 'profile ', label: <Link href={'/profile'}>Profile </Link> },
-            { key: 'logout ', label: <Button onClick={() => handleLogout()}>Logout </Button> },
+            { key: 'logout ', label: <Button onClick={() => handleLogout()} >Logout </Button> },
         ]
     }
     else if (role && role === 'SUPER_ADMIN') {

@@ -1,22 +1,36 @@
 'use client'
 import { Timeline } from "antd";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 import { PiNumberCircleFourFill, PiNumberCircleOneFill, PiNumberCircleThreeFill, PiNumberCircleTwoFill } from "react-icons/pi";
 
 export default function HowItWorks() {
+
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
         <div className="my-20">
 
             <p>___HOW IT WORKS</p>
-            <h1 className="text-2xl font-semibold mt-2">Easiest way to get a service</h1>
+            <h1
+
+                className="text-2xl font-semibold mt-2">Easiest way to get a service</h1>
             <div className="grid lg:grid-cols-2 gap-10 mt-5 ">
 
                 <div className="w-full h-[400px]">
-                    <img src='/images/steps.png' className="mx-auto h-[100%]" />
+                    <img
+
+                        src='/images/steps.png' className="mx-auto h-[100%]" />
                 </div>
-                <div className="gap-5">
+                <div
+
+                    className="gap-5">
 
                     <Timeline
+
                         items={[
                             {
                                 dot: <PiNumberCircleOneFill className="timeline-clock-icon text-4xl mt-2" />,

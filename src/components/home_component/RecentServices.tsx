@@ -10,17 +10,23 @@ import {
 import { useGetAllServiceQuery } from "@/redux/api/serviceApi";
 import { IService } from "@/types/data";
 import ServiceCard from "../ui/ServiceCard";
+import { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function RecentServices() {
 
     const { data }: any = useGetAllServiceQuery(undefined);
     const services = data?.data;
-
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
-        <div className="my-1">
+        <div
+            className="my-1">
 
 
-            <h1 className="text-2xl mt-20 font-semibold mb-5">Recent Services</h1>
+            <h1 className="text-2xl mt-10 font-semibold mb-5">Recent Services</h1>
 
 
             <div className="text-xl ">

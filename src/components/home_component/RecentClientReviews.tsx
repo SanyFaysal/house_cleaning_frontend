@@ -2,6 +2,8 @@
 
 import { useGetAllReviewsQuery } from "@/redux/api/reveiw.api"
 import ReviewCard from "../ui/ReviewCard";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import {
     Carousel,
@@ -10,12 +12,18 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import { useEffect } from "react";
 
 export default function RecentClientReviews() {
     const { data }: any = useGetAllReviewsQuery(undefined);
+    useEffect(() => {
+        AOS.init();
+    }, [])
 
     return (
-        <div className="my-10">
+        <div className="my-10"
+
+        >
             <h1 className="text-2xl  font-semibold mb-5">Recent Client Reviews</h1>
             <div>
                 <Carousel

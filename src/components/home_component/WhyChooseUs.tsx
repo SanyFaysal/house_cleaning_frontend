@@ -1,18 +1,32 @@
+'use client'
+
 import { BiPhoneCall } from "react-icons/bi";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { IoHappyOutline } from "react-icons/io5";
 import { TbClockShield } from "react-icons/tb";
 import { MdOutlinePriceCheck } from "react-icons/md";
 import { GrServices } from "react-icons/gr";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 export default function WhyChooseUs() {
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
         <div className="my-20">
 
-            <p>___WHY CHOOSE US</p>
-            <h1 className="text-2xl font-semibold mt-2">Because we care about your safety..</h1>
+            <div
+
+            >
+                <p>___WHY CHOOSE US</p>
+                <h1 className="text-2xl font-semibold mt-2">Because we care about your safety..</h1>
+            </div>
             <div className="grid lg:grid-cols-2 gap-10 mt-5">
-                <div className="grid grid-cols-3 gap-5">
+                <div
+
+                    className="grid grid-cols-3 gap-5">
 
                     <div className="    flex   flex-col gap-2  text-center items-center gap-x-5 bg-gray-50 rounded  justify-center">
                         <BiPhoneCall className='text-4xl text-blue-500' />
