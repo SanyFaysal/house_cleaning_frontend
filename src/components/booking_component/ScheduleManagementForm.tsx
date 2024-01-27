@@ -45,6 +45,8 @@ export default function ScheduleManagementForm({
             setGoNext(false)
         }
     }, [isLoading])
+
+    console.log({ service })
     return (
         <div>
             <Content className="flex flex-col items-center">
