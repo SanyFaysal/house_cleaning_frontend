@@ -39,7 +39,7 @@ export const dashboardSideItems = (role: string | any) => {
     else if (role && role === 'ADMIN') {
         return items = [
             {
-                key: 'dashboard ',
+                key: 'dashboard',
                 label: <Link href={'/user'}>Profile</Link>,
                 icon: <UserOutlined />
             },
@@ -50,20 +50,71 @@ export const dashboardSideItems = (role: string | any) => {
                 children: [
                     {
                         key: 'all_services',
-                        label: <Link href={'/'}>All Services</Link>,
-                        icon: <PlusOutlined />
+                        label: <Link href={'/services/all-services'}>All Services</Link>,
+                        icon: <OrderedListOutlined />
                     },
                     {
-                        key: 'add_service',
-                        label: <Link href={'/'}>Add Service</Link>,
+                        key: 'add_services',
+                        label: <Link href={'/services/add-service'}>Add Service</Link>,
+                        icon: <MdFormatListBulletedAdd className='text-xl' />
+
+                    },
+                    {
+                        key: 'all_categories',
+                        label: <Link href={'/services/all-categories'}>All Categories</Link>,
+                        icon: <BiCategory />
+
+
+                    },
+
+                    {
+                        key: 'add_category',
+                        label: <Link href={'/services/add-category'}>Add Category</Link>,
+                        icon: <BiCustomize />
+
                     }
                 ]
             },
             {
-                key: 'profile ',
-                label: <Link href={'/dashboard'}>History </Link>,
-                icon: <HistoryOutlined />
+                key: 'booking',
+                label: <Link href={'/services/all-bookings'}>All Bookings</Link>,
+                icon: <BookOutlined />,
             },
+            {
+                key: 'Blog',
+                label: "All Blogs",
+                icon: <BookOutlined />,
+                children: [
+                    {
+                        key: 'all_blogs',
+                        label: <Link href={'/'}>All Blogs</Link>,
+                        icon: <OrderedListOutlined />
+                    },
+                    {
+                        key: 'add_blogs',
+                        label: <Link href={'/'}>Add Service</Link>,
+                        icon: <PlusOutlined />
+                    }
+                ]
+            },
+            {
+                key: 'users',
+                label: "Users",
+                icon: <BookOutlined />,
+                children: [
+                    {
+                        key: 'all_blogs',
+                        label: <Link href={'/'}>All Users</Link>,
+                        icon: <OrderedListOutlined />
+                    },
+                    {
+                        key: 'add_blogs',
+                        label: <Link href={'/'}>Add User</Link>,
+                        icon: <PlusOutlined />
+                    }
+                ]
+            },
+
 
         ]
     }

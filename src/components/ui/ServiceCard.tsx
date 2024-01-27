@@ -12,8 +12,7 @@ export default function ServiceCard({ service }: { service: IService }) {
                 <h5 className="text-lg font-medium tracking-tight    dark:text-white">
                     {service?.serviceName?.length > 25 ? `${service?.serviceName?.slice(0, 25)}.` : service?.serviceName}
                 </h5>
-                <div className="flex justify-between text-[16px]">
-                    <button>Cart</button>
+                <div className="flex justify-start text-[16px]">
                     <p className="">{service?.price} Tk</p>
                 </div>
             </div>

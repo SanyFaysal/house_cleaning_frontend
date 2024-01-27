@@ -22,7 +22,10 @@ export default function Comments({ serviceId }: { serviceId: any }) {
     const handleAddComment = async () => {
         try {
             if (!comment) {
-                message.error('Please write your comment')
+                return message.error('Please write your comment')
+            }
+            if (!user?.id) {
+                return message.error('Please login first')
             }
             const data = {
                 userId: user.id,
