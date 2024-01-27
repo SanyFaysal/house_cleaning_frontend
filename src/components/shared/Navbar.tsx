@@ -24,7 +24,7 @@ export default function Navbar() {
 
     return (
 
-        <div className="    sticky top-[-24px] z-[99] 	bg-white ">
+        <div className="    sticky top-0 z-[99] 	bg-white ">
             {/* <Marquee speed={25} className="text-xs  text-gray-100 bg-gray-800  ">
                 <p className="lg:py-1 text-end px-5">Limited-time offer: 20% off on all electronic repairs this week !</p>
                 <p className="lg:py-1 text-end px-5">Featured Service: Repairing Service, Book Now !</p>
