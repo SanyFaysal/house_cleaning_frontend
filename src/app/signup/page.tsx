@@ -12,6 +12,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { setUser } from "@/redux/slices/userSlice";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import SuggestAdminLoginInfo from "@/components/shared/SuggestAdminLoginInfo";
 
 type FieldType = {
     fullName?: string,
@@ -54,6 +55,7 @@ export default function Signup() {
             </div>
             <div className="h-full w-full flex flex-col justify-center items-start">
                 <h1 className="text-2xl mb-5">Sinup your new Account</h1>
+                <SuggestAdminLoginInfo />
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}

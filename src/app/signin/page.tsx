@@ -13,6 +13,7 @@ import { setUser } from "@/redux/slices/userSlice";
 import { useEffect } from "react";
 import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
+import SuggestAdminLoginInfo from "@/components/shared/SuggestAdminLoginInfo";
 
 type FieldType = {
     email?: string;
@@ -50,6 +51,7 @@ export default function Signin() {
             </div>
             <div className="h-full w-full flex flex-col justify-center items-start">
                 <h1 className="text-2xl mb-5">Sign in to your Account</h1>
+                <SuggestAdminLoginInfo />
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}
@@ -80,7 +82,7 @@ export default function Signin() {
                             Login
                         </Button>
                     </Form.Item>
-                    <p>Already have an account ? <Link href={'/signup'}>Signin</Link> </p>
+                    <p>Already have an account ? <Link href={'/signup'}>Sign up</Link> </p>
 
                 </Form>
             </div>
