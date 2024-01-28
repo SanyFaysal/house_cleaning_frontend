@@ -13,6 +13,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import { useEffect } from "react";
+import { Skeleton } from "antd";
 
 export default function RecentClientReviews() {
     const { data }: any = useGetAllReviewsQuery(undefined);
@@ -26,7 +27,17 @@ export default function RecentClientReviews() {
         >
             <h1 className="text-2xl  font-semibold mb-5">Recent Client Reviews</h1>
             <div>
-                <Carousel
+
+                {
+                    !data?.data?.length && <div className="grid lg:grid-cols-3 gap-5 ">
+                        {[1, 1, 1]?.map((item: any) => <div className="flex flex-col">
+
+                            <Skeleton active />
+                        </div>)}
+                    </div>
+                }
+
+                {data?.data?.length && <Carousel
                     opts={{
                         align: "start",
                     }}
@@ -39,7 +50,7 @@ export default function RecentClientReviews() {
                     </CarouselContent>
                     <CarouselPrevious className="border-0 text-sky-500" >Prev</CarouselPrevious>
                     <CarouselNext className="border-0 text-sky-500" />
-                </Carousel>
+                </Carousel>}
             </div>
         </div>
 

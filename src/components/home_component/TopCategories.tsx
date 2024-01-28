@@ -14,6 +14,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import { Skeleton } from "antd";
 export default function TopCategories() {
     const { data }: any = useGetAllCategoriesQuery(undefined);
 
@@ -25,8 +26,15 @@ export default function TopCategories() {
 
         >
             <h1 className="text-2xl font-semibold mb-5 ">Top Categories</h1>
+            {
+                !data?.data?.length && <div className="grid lg:grid-cols-6 gap-5 ">
+                    {[1, 1, 1, 1, 1, 1]?.map((item: any) => <div className="flex flex-col">
+                        <Skeleton active />
+                    </div>)}
+                </div>
+            }
 
-            <Carousel
+            {data?.data?.length && <Carousel
                 opts={{
                     align: "start",
                 }}
@@ -40,7 +48,7 @@ export default function TopCategories() {
                 </CarouselContent>
                 <CarouselPrevious className=" border-0 text-sky-500" />
                 <CarouselNext className=" border-0 text-sky-500" />
-            </Carousel>
+            </Carousel>}
 
         </div>
     )

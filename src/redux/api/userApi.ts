@@ -31,6 +31,16 @@ export const authApi = baseApi.injectEndpoints({
             }),
             providesTags: ["USER"]
         }),
+        getAllUser: build.query({
+            query: (token) => ({
+                url: `${USER_URL}/all`,
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            }),
+            providesTags: ["USER"]
+        }),
 
     }),
 
@@ -39,5 +49,6 @@ export const authApi = baseApi.injectEndpoints({
 export const {
     useSigninMutation,
     useSignupMutation,
-    useGetMeQuery
+    useGetMeQuery,
+    useGetAllUserQuery
 } = authApi

@@ -13,6 +13,7 @@ import ServiceCard from "../ui/ServiceCard";
 import { useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Skeleton } from "antd";
 
 export default function RecentServices() {
 
@@ -30,22 +31,35 @@ export default function RecentServices() {
 
 
             <div className="text-xl ">
-                <Carousel
-                    opts={{
-                        align: "start",
-                    }}
-                    className="mx-2 "
-                >
-                    <CarouselContent>
 
-                        {services?.map((service: IService) => <CarouselItem key={service?.id} className="md:basis-1/2 lg:basis-1/4 rounded-lg ">
+                {
+                    !services?.length && <div className="grid lg:grid-cols-4 gap-5 ">
+                        {[1, 1, 1, 1]?.map((item: any) => <div className="flex flex-col">
 
-                            <ServiceCard service={service} key={service?.id} />
-                        </CarouselItem>)}
-                    </CarouselContent>
-                    <CarouselPrevious className=" border-0 text-sky-500" />
-                    <CarouselNext className=" border-0 text-sky-500" />
-                </Carousel>
+                            <Skeleton active />
+                        </div>)}
+                    </div>
+                }
+
+                {
+                    services?.length && <Carousel
+                        opts={{
+                            align: "start",
+                        }}
+                        className="mx-2 "
+                    >
+                        <CarouselContent>
+
+                            {services?.map((service: IService) => <CarouselItem key={service?.id} className="md:basis-1/2 lg:basis-1/4 rounded-lg ">
+
+                                <ServiceCard service={service} key={service?.id} />
+                            </CarouselItem>)}
+                        </CarouselContent>
+                        <CarouselPrevious className=" border-0 text-sky-500" />
+                        <CarouselNext className=" border-0 text-sky-500" />
+                    </Carousel>
+                }
+
             </div>
         </div>
     )

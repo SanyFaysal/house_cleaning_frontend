@@ -16,7 +16,7 @@ export default function Profile() {
             <p className='text-center text-3xl uppercase'>({user.role})</p>
             <div className='flex flex-col items-center my-5'>
                 <Image
-                    src={user?.image ?? ""}
+                    src={user?.image !== "NULL" ? user?.image : '/images/default-profile.webp'}
                     alt={`${user?.fullName}'s avatar`}
                     height={200}
                     width={100}

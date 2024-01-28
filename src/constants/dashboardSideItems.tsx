@@ -103,8 +103,8 @@ export const dashboardSideItems = (role: string | any) => {
                 icon: <BookOutlined />,
                 children: [
                     {
-                        key: 'all_blogs',
-                        label: <Link href={'/'}>All Users</Link>,
+                        key: 'all_users',
+                        label: <Link href={'/user'}>All Users</Link>,
                         icon: <OrderedListOutlined />
                     },
                     {
@@ -185,8 +185,8 @@ export const dashboardSideItems = (role: string | any) => {
                 icon: <BookOutlined />,
                 children: [
                     {
-                        key: 'all_blogs',
-                        label: <Link href={'/'}>All Users</Link>,
+                        key: 'all_users',
+                        label: <Link href={'/user'}>All Users</Link>,
                         icon: <OrderedListOutlined />
                     },
                     {
