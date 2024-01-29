@@ -54,8 +54,9 @@ export default function Signup() {
                 <Image src={login_image} alt="login" width={500} height={100} />
             </div>
             <div className="h-full w-full flex flex-col justify-center items-start">
-                <h1 className="text-2xl mb-5">Sinup your new Account</h1>
+                <h1 className="text-2xl">Sinup your new Account</h1>
                 <SuggestAdminLoginInfo />
+                <div className="mt-5" />
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}

@@ -50,8 +50,9 @@ export default function Signin() {
                 <Image src={login_image} alt="login" width={500} height={100} />
             </div>
             <div className="h-full w-full flex flex-col justify-center items-start">
-                <h1 className="text-2xl mb-5">Sign in to your Account</h1>
+                <h1 className="text-2xl">Sign in to your Account</h1>
                 <SuggestAdminLoginInfo />
+                <div className="mt-5" />
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}
@@ -59,7 +60,7 @@ export default function Signin() {
                     layout="vertical"
 
                     autoComplete="off"
-                    className="mx-4 w-3/4"
+                    className="mx-4 w-3/4  "
                 >
                     <Form.Item<FieldType>
                         label="Email"

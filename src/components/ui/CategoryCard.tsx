@@ -3,11 +3,14 @@
 
 import { ICategory } from "@/types/data";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 export default function CategoryCard({ category }: { category: ICategory }) {
-    console.log({ category })
+    const router = useRouter()
     return (
-        <div className="bg-gray-50 px-3 py-2 rounded-lg text-center cursor-pointer ">
+        <div onClick={() => router.push(`/service?category=${category?.title}`)} className="bg-gray-50 px-3 py-2 rounded-lg text-center cursor-pointer ">
             <div className="flex justify-center  px-2">
                 {/* <Image src={'http://res.cloudinary.com/dfcztmnvh/image/upload/v1705694272/orbkrp9z0ufm7jxspczy.jpg'} width={100} height={100}
                     style={{ width: '80%', height: '90px' }}

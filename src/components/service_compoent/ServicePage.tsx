@@ -3,12 +3,15 @@
 
 import { useGetAllCategoriesQuery } from "@/redux/api/categoryApi";
 import { useGetAllServiceQuery } from "@/redux/api/serviceApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CategoryServices from "./CategoryServices";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 
 export default function ServicePage() {
+    const router = useRouter()
+    const searchParams = useSearchParams()
     const [category, setCategory] = useState<Record<string, any>>()
     const [categoryOpen, setCategoryOpen] = useState<boolean>(false);
 
@@ -25,11 +28,21 @@ export default function ServicePage() {
         if (Object.keys(category)?.length) {
             setQuery({ category: category?.title && category?.title })
             setCategory(category)
+            router.push(`/service?category=${category?.title}`)
         } else {
             setCategory({})
             setQuery({})
+            router.push(`/service`)
         }
     }
+    useEffect(() => {
+        const searchCategory = searchParams.get('category')
+        if (searchCategory) {
+            setQuery({ category: searchCategory && searchCategory })
+            setCategory({ category: searchCategory })
+        }
+
+    }, [])
     return (
         <>
             <div className="">
@@ -44,7 +57,7 @@ export default function ServicePage() {
                                 text-semibold 
                                        hover:cursor-pointer 
                                        ${!query?.category ?
-                                        'text-blue-400 border-r-2 font-semibold border-r-blue-500 pr-8' : ''}`} key={category?.id}
+                                        'text-blue-400 border-r-2  border-r-blue-600 pr-8' : ''}`} key={category?.id}
                                 onClick={() => handleSetCategory({})} >
                                 <span>All </span>
                             </div>
@@ -54,7 +67,7 @@ export default function ServicePage() {
                                 text-semibold 
                                        hover:cursor-pointer 
                                        ${query?.category === category?.title ?
-                                            'text-blue-400 border-r-2 font-semibold border-r-blue-500 pr-8' : ''}`} key={category?.id}
+                                            'text-blue-400 border-r-2  border-r-blue-600 pr-8' : ''}`} key={category?.id}
                                     onClick={() => handleSetCategory(category)} >
                                     <span>{category?.title}</span>
                                 </div>)}
