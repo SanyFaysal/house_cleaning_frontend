@@ -35,7 +35,7 @@ export default function RecentClientReviews() {
                     className="mx-2 "
                 >
                     <CarouselContent className="">
-                        {data?.data?.map((review: any) => <CarouselItem key={review?.id} className="md:basis-1/2 lg:basis-1/3 rounded-lg bg-gray-50 p-3 ">
+                        {data?.data?.map((review: any) => <CarouselItem key={review?.id} className="md:basis-1/2 lg:basis-1/3 rounded-lg bg-gray-50 p-3 mr-3 ">
                             <ReviewCard review={review} key={review?.id} />
                         </CarouselItem>)}
                     </CarouselContent>
