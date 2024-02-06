@@ -2,6 +2,7 @@
 
 import { authKey } from "@/constants/storageKey";
 import { useAddToCartMutation } from "@/redux/api/cart.api";
+import { useAppSelector } from "@/redux/hook";
 import { IService } from "@/types/data";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { EyeOutlined } from "@ant-design/icons";
@@ -10,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { MdOutlineAddShoppingCart, MdOutlineCategory } from "react-icons/md";
 
 export default function ServiceCard({ service }: { service: IService }) {
+    const { user } = useAppSelector(state => state.auth);
     const token = getFromLocalStorage(authKey);
     const router = useRouter();
 
@@ -17,6 +19,9 @@ export default function ServiceCard({ service }: { service: IService }) {
 
     const handleAddToCart = async (id: string) => {
         try {
+            if (!user?.id) {
+                return message.error('Please login first')
+            }
             const data = {
                 serviceId: id
             }
