@@ -1,4 +1,4 @@
 export const getBaseUrl = (): string => {
 
-    return "https://house-cleaning-backend-rcxdiixez-sanyfaysal.vercel.app/api/v1"
+    return "https://house-cleaning-backend.vercel.app/api/v1"
 }
