@@ -31,9 +31,9 @@ export default function Navbar() {
                 <p className="lg:py-1 text-end px-5">Exciting News! Now offering eco-friendly cleaning services.</p>
                 <p className="lg:py-1 text-end px-5">Emergency? Call us at 01235456789 for swift assistance.</p>
             </Marquee> */}
-            <div className=" grid grid-cols-4 shadow ">
+            <div className=" grid grid-cols-4  ">
                 <Link href={'/'} className="font-semibold col-span-1  py-2 lg:px-12  ">
-                    <Image src={'/images/logo2.png'} height={180} width={220} alt="logo" className="mt-1  " />
+                    <img src={'/images/logo2.png'} height={180} width={220} alt="logo" className="mt-1  " />
                 </Link>
 
                 <div className="flex flex-col justify-center items-end w-full my-auto col-span-3 ml-[-4px]    ">
